@@ -26,7 +26,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -------------------------------------------------------------------------------
 -- Toggle/untoggle relative/absolute line numbers depending on active/inactive
 -- state of the buffers.
-local numbertoggle = vim.api.nvim_create_augroup("numbertoggle", { clear = true })
+local numbertoggle = vim.api.nvim_create_augroup("NumberToggle", { clear = true })
 
 -- relative line numbers in active buffer
 vim.api.nvim_create_autocmd(
