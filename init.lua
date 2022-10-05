@@ -7,3 +7,6 @@ require "user.settings"
 require "user.keymaps"
 require "user.autocommands"
 require "user.plugins"
+
+require "plugins.toggleterm"
+require "plugins.treesitter"
