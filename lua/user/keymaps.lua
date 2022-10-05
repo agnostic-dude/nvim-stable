@@ -49,3 +49,6 @@ nmap("<Esc>", ":nohlsearch<Bar>:echo<CR>")
 
 -- Captalize previous word in INSERT mode
 imap("<C-u>", "<Esc>viwUea")
+
+-- LEADER KEY (aka. <Leader>)
+vim.g.mapleader = ";"
