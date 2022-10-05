@@ -22,6 +22,7 @@ o.colorcolumn = '+0' -- highlight last legal column
 
 -- Show line numbers
 o.number = true
+o.relativenumber = true
 
 -- Search settings
 o.ignorecase = true
@@ -34,3 +35,6 @@ o.undofile = true
 g.mouse = 'a'
 o.digraph = true
 o.cursorline = true -- highlight the line cursor is on
+
+-- Dictionary
+o.dictionary = "/usr/share/dict/words"
