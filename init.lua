@@ -3,6 +3,6 @@
 -- Configuration file in Lua
 --=============================================================================
 --
-require "user.settings"
-require "user.keymaps"
-require "user.autocommands"
+require("user.settings")
+require("user.keymaps")
+require("user.autocommands")
