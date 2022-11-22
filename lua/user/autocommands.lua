@@ -10,15 +10,15 @@
 local trim_whitespace = vim.api.nvim_create_augroup("TrimWhitespace", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  command = "autocmd BufWritePre <buffer> %s/\\s\\+$//e",
-  group = trim_whitespace,
+    pattern = "*",
+    command = "autocmd BufWritePre <buffer> %s/\\s\\+$//e",
+    group = trim_whitespace,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  command = "autocmd BufWritePre <buffer> %s/\\($\\n\\s*\\)\\+\\%$//e",
-  group = trim_whitespace,
+    pattern = "*",
+    command = "autocmd BufWritePre <buffer> %s/\\($\\n\\s*\\)\\+\\%$//e",
+    group = trim_whitespace,
 })
 
 -------------------------------------------------------------------------------
@@ -30,14 +30,14 @@ local numbertoggle = vim.api.nvim_create_augroup("NumberToggle", { clear = true 
 
 -- relative line numbers in active buffer
 vim.api.nvim_create_autocmd(
-  { "BufEnter", "FocusGained", "InsertLeave" },
-  { pattern = "*", command = "set relativenumber", group = numbertoggle }
+    { "BufEnter", "FocusGained", "InsertLeave" },
+    { pattern = "*", command = "set relativenumber", group = numbertoggle }
 )
 
 -- absolute line numbers in inactive buffer
 vim.api.nvim_create_autocmd(
-  { "BufLeave", "FocusLost", "InsertEnter" },
-  { pattern = "*", command = "set norelativenumber", group = numbertoggle }
+    { "BufLeave", "FocusLost", "InsertEnter" },
+    { pattern = "*", command = "set norelativenumber", group = numbertoggle }
 )
 
 -------------------------------------------------------------------------------
@@ -45,28 +45,47 @@ vim.api.nvim_create_autocmd(
 -------------------------------------------------------------------------------
 -- Make AutoPairs understand python F-strings & byte strings
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "python",
-  command = [[ let b:AutoPairs = AutoPairsDefine({ "f'": "'", "b'": "'", "r'": "'"}) ]]
+    pattern = "python",
+    command = [[ let b:AutoPairs = AutoPairsDefine({ "f'": "'", "b'": "'", "r'": "'"}) ]]
 })
 
 -- AutoPairs for rust
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "rust",
-  command = [[ let b:AutoPairs = AutoPairsDefine({ 'r#"': '"#', "\w\zs<": ">", "|": "|"}) ]]
+    pattern = "rust",
+    command = [[ let b:AutoPairs = AutoPairsDefine({ 'r#"': '"#', "\w\zs<": ">", "|": "|"}) ]]
 })
 
 -- Make AutoPairs understand markup language angle brackets
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "html", "xml" },
-  command = [[  let b:AutoPairs = AutoPairsDefine({ '<': '>' }) ]]
+    pattern = { "html", "xml" },
+    command = [[  let b:AutoPairs = AutoPairsDefine({ '<': '>' }) ]]
 })
 
 -- Auto-complete HTML tags with omnicomplete
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "html",
-  command = "inoremap </ </<C-x><C-o>"
+    pattern = "html",
+    command = "inoremap </ </<C-x><C-o>"
 })
 
 -- Source relavent skeleton file
-vim.cmd [[ autocmd BufNewFile *.py 0r ~/.local/share/nvim/templates/template.py ]]
-vim.cmd [[ autocmd BufNewFile *.html 0r ~/.local/share/nvim/templates/template.html ]]
+-- vim.cmd [[ autocmd BufNewFile *.py 0r ~/.local/share/nvim/skeletons/skeleton.py ]]
+-- vim.cmd [[ autocmd BufNewFile *.c 0r ~/.local/share/nvim/skeletons/skeleton.c ]]
+-- vim.cmd [[ autocmd BufNewFile *.lua 0r ~/.local/share/nvim/skeletons/skeleton.lua ]]
+
+local source_skeleton_file = vim.api.nvim_create_augroup("Template", { clear = true })
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+    pattern = "*.py",
+    group = source_skeleton_file,
+    command = [[ 0read ~/.local/share/nvim/skeletons/skeleton.py ]],
+})
+vim.api.nvim_create_autocmd("BufNewFile", {
+    pattern = "*.c",
+    group = source_skeleton_file,
+    command = [[ 0read ~/.local/share/nvim/skeletons/skeleton.c ]],
+})
+vim.api.nvim_create_autocmd("BufNewFile", {
+    pattern = "*.lua",
+    group = source_skeleton_file,
+    command = [[ 0read ~/.local/share/nvim/skeletons/skeleton.lua ]],
+})
