@@ -11,41 +11,43 @@
 -- mapping. You also will not have the use of Caps-Lock key!
 --
 -- Entering any neovim buffer: CapsLock Key ==> Escape Function
+local remap_capslock = vim.api.nvim_create_augroup("RemapCapsLock", { clear=true })
+
 vim.api.nvim_create_autocmd("VimEnter", {
   pattern = "*",
   command = "silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'",
+  desc = "map CapsLock to Esc on entry",
+  group = remap_capslock,
 })
 
 -- Exiting any neovim buffer: CapsLock Key ==> CapsLock Function
 vim.api.nvim_create_autocmd("VimLeave", {
   pattern = "*",
   command = "silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'",
+  desc = "restore CapsLock on exit",
+  group = remap_capslock,
 })
 
---> Map "lhs" keystrokes to "rhs" keystrokes, in NORMAL mode with default opts
-local function nmap(lhs, rhs)
-  vim.keymap.set("n", lhs, rhs, { remap = false, buffer = bufnr })
-end
 
--- Map keys in NORMAL and INSERT modes
---> Map "lhs" keystrokes to "rhs" keystrokes, in INSERT mode with default opts
-local function imap(lhs, rhs)
-  vim.keymap.set("i", lhs, rhs, { remap = false, buffer = bufnr })
-end
+local utils = require("user.utils")
+local nnoremap = utils.nnoremap --> nnoremap(...)
+local inoremap = utils.inoremap --> inoremap(...)
 
--- Navigate between Vertical splits in NORMAL mode
-nmap("<C-l>", "<C-w>l")
-nmap("<C-h>", "<C-w>h")
+-- Navigate between splits in NORMAL mode without CTRL+w
+nnoremap("<C-l>", "<C-w>l") --> Goto split on left
+nnoremap("<C-h>", "<C-w>h") --> Goto split on right
+nnoremap("<C-j>", "<C-w>j") --> Goto split below
+nnoremap("<C-k>", "<C-w>k") --> Goto split above
 
 -- Ctrl-s to save in NORMAL & INSERT modes, and return to relavent mode
-nmap("<C-s>", "<Cmd>w<CR>") --> nmap(...)
-imap("<C-s>", "<Esc><Cmd>w<CR>a") --> imap(...)
+nnoremap("<C-s>", "<Cmd>w<CR>")
+inoremap("<C-s>", "<Esc><Cmd>w<CR>a")
 
--- Ctrl-q closes current split
-nmap("<C-q>", "<C-w>q")
+-- Ctrl-q closes current split, without CTRL+w
+nnoremap("<C-q>", "<C-w>q")
 
 -- Clear highlighted text with <Escape> key
-nmap("<Esc>", ":nohlsearch<Bar>:echo<CR>")
+nnoremap("<Esc>", "<cmd>nohlsearch<Bar>:echo<CR>")
 
 -- Captalize previous word in INSERT mode
-imap("<C-u>", "<Esc>viwUea")
+inoremap("<C-u>", "<Esc>viwUea")
