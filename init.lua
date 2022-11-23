@@ -6,3 +6,5 @@
 require("user.settings")
 require("user.keymaps")
 require("user.autocommands")
+require("user.plugins")
+require("user.colors")
