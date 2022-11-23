@@ -39,8 +39,8 @@ return require("packer").startup(function(use)
   use("liuchengxu/space-vim-theme") -- dark & light theme for space-vim
   use("sainnhe/sonokai") -- high-contrast based on Monokai Pro
 
-  use("tpope/vim-commentary")
-  use("windwp/nvim-autopairs")
+  use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
+  use("jiangmiao/auto-pairs") -- insert/delete quotes, parens, brackets in pairs
   use("lukas-reineke/indent-blankline.nvim")
 
   use({ "akinsho/toggleterm.nvim", tag = "*"}) -- * avoids breaking changes
