@@ -38,6 +38,12 @@ return require("packer").startup(function(use)
   use("navarasu/onedark.nvim") -- Based on Atom One dark & light themes
   use("liuchengxu/space-vim-theme") -- dark & light theme for space-vim
   use("sainnhe/sonokai") -- high-contrast based on Monokai Pro
+
+  use("tpope/vim-commentary")
+  use({ "windwp/nvim-autopairs",
+  config = function() require("nvim-autopairs").setup() end,
+  })
+  use("lukas-reineke/indent-blankline.nvim")
   
 
 
