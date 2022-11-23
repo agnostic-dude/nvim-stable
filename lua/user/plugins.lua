@@ -40,9 +40,7 @@ return require("packer").startup(function(use)
   use("sainnhe/sonokai") -- high-contrast based on Monokai Pro
 
   use("tpope/vim-commentary")
-  use({ "windwp/nvim-autopairs",
-  config = function() require("nvim-autopairs").setup() end,
-  })
+  use("windwp/nvim-autopairs")
   use("lukas-reineke/indent-blankline.nvim")
   
 
