@@ -46,6 +46,12 @@ return require("packer").startup(function(use)
 
   use({ "akinsho/toggleterm.nvim", tag = "*" }) -- * avoids breaking changes
 
+  -- Language-Server Protocol
+  use("neovim/nvim-lspconfig") -- configs for builtin LSP client
+  use("hrsh7th/nvim-cmp") -- completion
+  use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
+  use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for builtin LSP
+
 
   -- automatically setup configuration after cloning packer.nvim
   if packer_bootstrap then
