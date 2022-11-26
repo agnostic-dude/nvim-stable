@@ -6,7 +6,8 @@ local function ensure_packer()
   local fn = vim.fn
   local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
   -- if packer.nvim not found, git clone it
-  if fn.empty(fn.glob(install_path)) then
+  if fn.empty(fn.glob(install_path)) == 1 then
+    print("Installing packer for the first time...")
     fn.system({
       "git", "clone", "--depth", "1",
       "https://github.com/wbthomason/packer.nvim", install_path
@@ -25,11 +26,11 @@ return require("packer").startup(function(use)
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter",
-  run = function()
-    local ts_update = require("nvim-treesitter.install").update({with_sync=true})
-    ts_update()
-  end,
-})
+    run = function()
+      local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+      ts_update()
+    end,
+  })
 
   -- themes
   use("NLKNguyen/papercolor-theme") -- Based on Google's Material Design
@@ -43,7 +44,7 @@ return require("packer").startup(function(use)
   use("jiangmiao/auto-pairs") -- insert/delete quotes, parens, brackets in pairs
   use("lukas-reineke/indent-blankline.nvim")
 
-  use({ "akinsho/toggleterm.nvim", tag = "*"}) -- * avoids breaking changes
+  use({ "akinsho/toggleterm.nvim", tag = "*" }) -- * avoids breaking changes
 
 
   -- automatically setup configuration after cloning packer.nvim
