@@ -12,3 +12,5 @@ require("user.colors")
 require("plugins.treesitter")
 require("plugins.indentblankline")
 require("plugins.toggleterm")
+
+require("plugins.lsp.servers")
