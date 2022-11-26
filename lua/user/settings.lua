@@ -16,7 +16,6 @@ o.breakindent = true
 
 -- Text dispaly area setup
 o.textwidth = 80 -- max line length
-o.wrapmargin = 2 -- chars to left of border when wrapping starts
 o.signcolumn = 'auto' -- hide signcolumn if there is nothing to show
 o.colorcolumn = '+0' -- highlight last legal column
 
