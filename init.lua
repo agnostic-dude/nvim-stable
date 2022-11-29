@@ -13,4 +13,5 @@ require("plugins.treesitter")
 require("plugins.indentblankline")
 require("plugins.toggleterm")
 
-require("plugins.lsp.servers")
+require("plugins.lsp.server_setup")
+require("plugins.lsp.keymaps")
