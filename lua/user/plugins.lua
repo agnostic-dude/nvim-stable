@@ -52,6 +52,9 @@ return require("packer").startup(function(use)
   use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
   use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for builtin LSP
 
+  use("L3MON4D3/LuaSnip")
+  use("rafamadriz/friendly-snippets")
+
 
   -- automatically setup configuration after cloning packer.nvim
   if packer_bootstrap then
