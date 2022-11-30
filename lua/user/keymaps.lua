@@ -11,7 +11,7 @@
 -- mapping. You also will not have the use of Caps-Lock key!
 --
 -- Entering any neovim buffer: CapsLock Key ==> Escape Function
-local remap_capslock = vim.api.nvim_create_augroup("RemapCapsLock", { clear=true })
+local remap_capslock = vim.api.nvim_create_augroup("RemapCapsLock", { clear = true })
 
 vim.api.nvim_create_autocmd("VimEnter", {
   pattern = "*",
@@ -39,6 +39,13 @@ nnoremap("<C-h>", "<C-w>h") --> Goto split on right
 nnoremap("<C-j>", "<C-w>j") --> Goto split below
 nnoremap("<C-k>", "<C-w>k") --> Goto split above
 
+-- * Transform a horizontal split to a vertical split (e.g. help pages)
+-- NOTE: Assumes command is launched from a vertical split below first window
+nnoremap("<Leader>hv", "<C-w>t<C-w>H<C-w>l")
+-- * Transform a vertical split to a horizontal split
+-- NOTE: Assumes command is run from a horizontal split to right of first one
+nnoremap("<Leader>vh", "<C-w>t<C-w>K<C-w>j")
+
 -- Ctrl-s to save in NORMAL & INSERT modes, and return to relavent mode
 nnoremap("<C-s>", "<Cmd>w<CR>")
 inoremap("<C-s>", "<Esc><Cmd>w<CR>a")
@@ -49,5 +56,9 @@ nnoremap("<C-q>", "<C-w>q")
 -- Clear highlighted text with <Escape> key
 nnoremap("<Esc>", "<cmd>nohlsearch<Bar>:echo<CR>")
 
--- Captalize previous word in INSERT mode
+-- CAUTION: Following mapping replaces the original in INSERT mode
+-- <C-u> deletes everything from cursor to the start of the line (UNDO LINE)
+-- <C-w> deletes the word before the cursor (UNDO WORD),
+-- Captalize previous word in INSERT mode with CTRL+u, keep original with CTRL+l
+inoremap("<C-l>", "<C-u>")
 inoremap("<C-u>", "<Esc>viwUea")
