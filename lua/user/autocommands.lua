@@ -75,7 +75,7 @@ create_autocmd("FileType", {
 -- Source relavent skeleton source file
 create_autocmd("BufNewFile", {
   pattern = "*.py",
-  command = "0read ~/.local/share/nvim/templates/template.py",
+  command = "0read ~/.local/share/nvim/skeletons/skeleton.py",
 })
 
 create_autocmd("BufNewFile", {
@@ -85,9 +85,33 @@ create_autocmd("BufNewFile", {
 
 -- Regenerate compiled loader file each time plugins config is updated
 create_autocmd("BufWritePost", {
-pattern = "plugins.lua",
-command = "source <afile> | PackerCompile | echo 'regenerated loader file'",
-desc = "Regenerate loader file on config update",
-group = create_augroup("PackerCompileOnUpdate", { clear = true })
+  pattern = "plugins.lua",
+  command = "source <afile> | PackerCompile | echo 'regenerated loader file'",
+  desc = "Regenerate loader file on config update",
+  group = create_augroup("PackerCompileOnUpdate", { clear = true })
 }
 )
+
+-- AUTO-PAIRS "FLY-MODE"
+-- Auto-pairs "Fly Mode" enables jumping out of nested closed pairs easier.
+-- Works for ), ] &  }. Instead of inserting parentheses.
+-- Press "g:AutoPairsBackInsert" key (default <M-b>) to jump back
+-- and insert closed pair.
+--
+-- WHY AN AUTOCOMMAND? WHY NOT A CONFIGURATION FILE?
+-- Before we setup config for "auto-pairs", we need to test if "auto-pairs" is
+-- installed. The way to check this is using global table "packer_plugin".
+-- But this table is only visible after "packer_compiled.lua" is loaded, which
+-- it turns out is AFTER user config (init.lua) is sourced, BUT before VimEnter
+-- autocommands are executed. Therefore, this will not work in a config file.
+create_autocmd("VimEnter", {
+  desc = "Register auto-pairs Fly Mode to activate",
+  pattern = "*",
+  callback = function()
+    if packer_plugins["auto-pairs"] then
+      vim.g.AutoPairsFlyMode = 1
+      vim.g.AutoPairsShortcutBackInsert = "<C-b>"
+    end
+  end,
+  group = create_augroup("ActivateAutoPairsFlyMode", { clear = true }),
+})
