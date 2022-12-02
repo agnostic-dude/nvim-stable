@@ -56,9 +56,10 @@ nnoremap("<C-q>", "<C-w>q")
 -- Clear highlighted text with <Escape> key
 nnoremap("<Esc>", "<cmd>nohlsearch<Bar>:echo<CR>")
 
--- CAUTION: Following mapping replaces the original in INSERT mode
+-- In INSERT mode;
 -- <C-u> deletes everything from cursor to the start of the line (UNDO LINE)
 -- <C-w> deletes the word before the cursor (UNDO WORD),
--- Captalize previous word in INSERT mode with CTRL+u, keep original with CTRL+l
-inoremap("<C-l>", "<C-u>")
-inoremap("<C-u>", "<Esc>viwUea")
+inoremap("<C-l>", "<Esc>viwUea") -- Captalize previous WORD
+
+-- -- Map ":" in NORMAL mode to open a command-line window ready for work
+-- nnoremap(":", "q:i")
