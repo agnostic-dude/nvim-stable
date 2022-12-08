@@ -27,12 +27,6 @@ require("plugins.lsp.colors")
 require("plugins.lsp.trouble")
 require("plugins.lsp.null_ls")
 
--- require "plugins.dap_config"
--- require("plugins.dbg")
--- require("plugins.dbg.config")
--- require("plugins.dbg.keymaps")
--- require("plugins.dbg.ui")
-
 -- require "plugins.refactoring"
 -- TODO: need setup DAP in a separate directory like lsp
 require("plugins.dap")
