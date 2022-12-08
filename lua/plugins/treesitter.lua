@@ -15,6 +15,7 @@ require("nvim-treesitter.configs").setup({
 
   -- When entering a buffer automatically install missing parsers
   auto_install = true,
+  indent = { enable = false }, -- if turned on messes up with indentation
 
   highlight = {
     enable = true, -- Core of Treesitter
