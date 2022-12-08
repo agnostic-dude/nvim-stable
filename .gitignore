@@ -9,6 +9,9 @@
 *.log.*
 *.sig
 
+*.bak
+tests/
+
 pkg/
 src/
 plugin/**
