@@ -3,10 +3,6 @@
 -- Lua configuration: autocommands
 --==============================================================================
 
-local inoremap = require("user.utils").inoremap
-local create_autocmd = vim.api.nvim_create_autocmd
-local create_augroup = vim.api.nvim_create_augroup
-
 -------------------------------------------------------------------------------
 --                      Redundant WHITESPACE
 -------------------------------------------------------------------------------

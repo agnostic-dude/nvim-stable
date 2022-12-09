@@ -11,9 +11,13 @@ lspconfig.sumneko_lua.setup({
         globals = { "vim" },
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = vim.api.nvim_get_runtime_file(".", true),
         checkThirdParty = false,
       },
+      runtime = {
+        version = "LuaJIT",
+        path = vim.o.runtimepath,
+      }
     },
   },
 })
@@ -24,4 +28,10 @@ lspconfig.tsserver.setup({
   capabilities = config.capabilities,
   filetypes = { "typescript", "javascript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
+})
+
+lspconfig.pyright.setup({
+  on_attach = config.on_attach,
+  capabilities = config.capabilities,
+  filetypes = { "python" },
 })

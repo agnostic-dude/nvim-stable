@@ -15,11 +15,15 @@ require("nvim-treesitter.configs").setup({
 
   -- When entering a buffer automatically install missing parsers
   auto_install = true,
-  indent = { enable = false }, -- if turned on messes up with indentation
+
+  indent = { enable = false }, -- turning on messes up with indentation, unless
+  -- additional_vim_regex_highlighting (see below) is turned on as well.
 
   highlight = {
     enable = true, -- Core of Treesitter
 
-    additional_vim_regex_highlighting = false,
+    -- Enabling this might slow down vim.  And lead to highlighting issues,
+    -- because highlight groups of ftplugin & treesitter are defined separately
+    additional_vim_regex_highlighting = false, -- same as "syntax off"
   },
 })

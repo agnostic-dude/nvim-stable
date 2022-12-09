@@ -28,10 +28,8 @@ vim.api.nvim_create_autocmd("VimLeave", {
   group = remap_capslock,
 })
 
-
-local utils = require("user.utils")
-local nnoremap = utils.nnoremap --> nnoremap(...)
-local inoremap = utils.inoremap --> inoremap(...)
+-- Setup global LEADER key
+vim.g.mapleader = ";"
 
 -- Navigate between splits in NORMAL mode without CTRL+w
 nnoremap("<C-l>", "<C-w>l") --> Goto split on left
@@ -63,3 +61,6 @@ inoremap("<C-l>", "<Esc>viwUea") -- Captalize previous WORD
 
 -- -- Map ":" in NORMAL mode to open a command-line window ready for work
 -- nnoremap(":", "q:i")
+nnoremap("<C-c>", "<cmd>tabclose<cr>")
+nnoremap("gn", "<cmd>tabnext<cr>") -- by default "gT"
+nnoremap("gp", "<cmd>tabprevious<cr>") -- by default "gT"

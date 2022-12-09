@@ -37,6 +37,3 @@ o.cursorline = true -- highlight the line cursor is on
 -- Split windows
 o.splitright = true
 o.splitbelow = true
-
--- Leader mapping
-g.mapleader = ";"

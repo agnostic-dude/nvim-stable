@@ -20,46 +20,62 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require("packer").startup(function(use)
-  -- self-manage packer plugin manager
-  use("wbthomason/packer.nvim")
+return require("packer").startup({
+  function(use)
+    -- self-manage packer plugin manager
+    use("wbthomason/packer.nvim")
 
-  -- Treesitter
-  use({ "nvim-treesitter/nvim-treesitter",
-    run = function()
-      local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-      ts_update()
-    end,
-  })
+    -- Treesitter
+    use({ "nvim-treesitter/nvim-treesitter",
+      run = function()
+        require("nvim-treesitter.install").update({ with_sync = true })()
+      end,
+    })
 
-  -- themes
-  use("NLKNguyen/papercolor-theme") -- Based on Google's Material Design
-  use("folke/tokyonight.nvim") -- Ported from TokyoNight of VSCode
-  use("Mofiqul/vscode.nvim") -- Based on Dark+ & Light+ of VSCode
-  use("navarasu/onedark.nvim") -- Based on Atom One dark & light themes
-  use("liuchengxu/space-vim-theme") -- dark & light theme for space-vim
-  use("sainnhe/sonokai") -- high-contrast based on Monokai Pro
+    -- themes
+    use("NLKNguyen/papercolor-theme") -- Based on Google's Material Design
+    use("folke/tokyonight.nvim") -- Ported from TokyoNight of VSCode
+    use("Mofiqul/vscode.nvim") -- Based on Dark+ & Light+ of VSCode
+    use("navarasu/onedark.nvim") -- Based on Atom One dark & light themes
+    use("liuchengxu/space-vim-theme") -- dark & light theme for space-vim
+    use("sainnhe/sonokai") -- high-contrast based on Monokai Pro
 
-  use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
-  use("jiangmiao/auto-pairs") -- insert/delete quotes, parens, brackets in pairs
-  use("lukas-reineke/indent-blankline.nvim")
+    use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
+    use("jiangmiao/auto-pairs") -- insert/delete quotes, parens, brackets in pairs
+    use("lukas-reineke/indent-blankline.nvim")
 
-  use({ "akinsho/toggleterm.nvim", tag = "*" }) -- * avoids breaking changes
+    use({ "akinsho/toggleterm.nvim", tag = "*" }) -- * avoids breaking changes
 
-  -- Language-Server Protocol
-  use("neovim/nvim-lspconfig") -- configs for builtin LSP client
-  use("hrsh7th/nvim-cmp") -- completion
-  use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
-  use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for builtin LSP
+    -- Language-Server Protocol
+    use("neovim/nvim-lspconfig") -- configs for builtin LSP client
+    use("hrsh7th/nvim-cmp") -- completion
+    use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
+    use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for builtin LSP
 
-  use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
-  use("rafamadriz/friendly-snippets")
+    -- Using LSP to inject diagnostics, code-actions, formatting, hover,
+    -- completion... from different tools
+    use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
 
-  -- Debugger
-  use("mfussenegger/nvim-dap")
+    use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
+    use("rafamadriz/friendly-snippets")
 
-  -- automatically setup configuration after cloning packer.nvim
-  if packer_bootstrap then
-    require("packer").sync()
-  end
-end)
+    -- Debugger
+    use("mfussenegger/nvim-dap")
+    use("mfussenegger/nvim-dap-python")
+    use("theHamsta/nvim-dap-virtual-text")
+    use("rcarriga/nvim-dap-ui")
+    use("jbyuki/one-small-step-for-vimkind")
+
+    -- automatically setup configuration after cloning packer.nvim
+    if packer_bootstrap then
+      require("packer").sync()
+    end
+  end,
+  config = {
+    display = {
+      open_fn = function()
+        return require("packer.util").float({ border = "solid" })
+      end,
+    }
+  },
+})
