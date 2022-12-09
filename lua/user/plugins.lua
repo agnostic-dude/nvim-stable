@@ -27,22 +27,37 @@ return require("packer").startup({
 
     -- Treesitter
     use({ "nvim-treesitter/nvim-treesitter",
+      requires = "nvim-treesitter/nvim-treesitter-textobjects",
       run = function()
         require("nvim-treesitter.install").update({ with_sync = true })()
       end,
+    })
+    use("p00f/nvim-ts-rainbow") --> color matched parenthesis with treesitter
+    use({
+      "folke/trouble.nvim",
+      requires = {
+        "kyazdani42/nvim-web-devicons",
+        "folke/lsp-colors.nvim", -- create highlight groups missing from theme
+      },
     })
 
     -- themes
     use("NLKNguyen/papercolor-theme") -- Based on Google's Material Design
     use("folke/tokyonight.nvim") -- Ported from TokyoNight of VSCode
-    use("Mofiqul/vscode.nvim") -- Based on Dark+ & Light+ of VSCode
     use("navarasu/onedark.nvim") -- Based on Atom One dark & light themes
     use("liuchengxu/space-vim-theme") -- dark & light theme for space-vim
-    use("sainnhe/sonokai") -- high-contrast based on Monokai Pro
+    use("rakr/vim-one") -- adaptation of one-light & one-dark
 
     use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
     use("jiangmiao/auto-pairs") -- insert/delete quotes, parens, brackets in pairs
     use("lukas-reineke/indent-blankline.nvim")
+    use("RRethy/vim-illuminate") --> smart highlighting of words under cursor
+
+    --> Statusline
+    use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = false } })
+
+    --> Git support
+    use({ "lewis6991/gitsigns.nvim", requires = "nvim-lua/plenary.nvim" })
 
     use({ "akinsho/toggleterm.nvim", tag = "*" }) -- * avoids breaking changes
 
@@ -51,20 +66,44 @@ return require("packer").startup({
     use("hrsh7th/nvim-cmp") -- completion
     use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
     use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for builtin LSP
+    use("hrsh7th/cmp-path")
+    use("hrsh7th/cmp-cmdline")
+    use({ "williamboman/mason.nvim",
+      requires = "williamboman/mason-lspconfig.nvim" })
 
     -- Using LSP to inject diagnostics, code-actions, formatting, hover,
     -- completion... from different tools
     use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
 
     use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
+    use("saadparwaiz1/cmp_luasnip")
     use("rafamadriz/friendly-snippets")
 
     -- Debugger
     use("mfussenegger/nvim-dap")
     use("mfussenegger/nvim-dap-python")
     use("theHamsta/nvim-dap-virtual-text")
+    use("nvim-telescope/telescope-dap.nvim") -- Telescope support
     use("rcarriga/nvim-dap-ui")
     use("jbyuki/one-small-step-for-vimkind")
+
+    --> Telescope
+    use({ "nvim-telescope/telescope.nvim", tag = "0.1.0", requires = "nvim-lua/plenary.nvim" })
+    --> FZY type sorted for telescope
+    use("nvim-telescope/telescope-fzy-native.nvim")
+    use("romgrk/fzy-lua-native")
+
+    -- Refactoring library based-off of book by Martin Fowler
+    use({
+      "ThePrimeagen/refactoring.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+      },
+    })
+
+    --> Emoji in vim
+    use("junegunn/vim-emoji")
 
     -- automatically setup configuration after cloning packer.nvim
     if packer_bootstrap then
