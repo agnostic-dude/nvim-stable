@@ -12,10 +12,10 @@ null_ls.setup({
   autostart = true,
   debug = true,
   sources = {
-    formatting.black,
-    formatting.prettier,
-    formatting.clang_format,
-    formatting.rustfmt,
+    formatting.black, -- python
+    formatting.prettier, -- javascript
+    formatting.clang_format, -- C
+    formatting.rustfmt, -- rust
 
     -- Stylua needs a project based stylua.toml or .stylua.toml
     -- formatting.stylua,
