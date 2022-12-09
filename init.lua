@@ -9,6 +9,7 @@ require("user.keymaps")
 require("user.autocommands")
 require("user.colors")
 require("user.plugins")
+require("user.viml")
 
 require("plugins.treesitter")
 require("plugins.indentblankline")
