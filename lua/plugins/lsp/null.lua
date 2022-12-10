@@ -6,6 +6,7 @@ if not null_ls_ok then
 end
 
 local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
 local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
@@ -13,8 +14,8 @@ null_ls.setup({
   debug = true,
   sources = {
     formatting.black, -- python
+    formatting.isort, -- python
     formatting.prettier, -- javascript
-    formatting.clang_format, -- C
     formatting.rustfmt, -- rust
 
     -- Stylua needs a project based stylua.toml or .stylua.toml
@@ -30,6 +31,7 @@ null_ls.setup({
     --     "--indent-width=8",
     --   },
     -- }),
+    diagnostics.pylint, -- +simple refactoring
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -37,8 +39,13 @@ null_ls.setup({
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = lsp_formatting,
         buffer = bufnr,
-        callback = function(client)
-          return client.name == "null-ls"
+        callback = function()
+          vim.lsp.buf.format({
+            bufnr = bufnr,
+            filter = function (client)
+              return client.name == "null-ls"
+            end
+          })
         end,
       })
     end
