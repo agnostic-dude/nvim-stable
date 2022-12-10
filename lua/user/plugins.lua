@@ -54,7 +54,8 @@ return require("packer").startup({
     use("RRethy/vim-illuminate") --> smart highlighting of words under cursor
 
     --> Statusline
-    use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = false } })
+    use({ "nvim-lualine/lualine.nvim",
+      requires = { "kyazdani42/nvim-web-devicons", opt = false } })
 
     --> Git support
     use({ "lewis6991/gitsigns.nvim", requires = "nvim-lua/plenary.nvim" })
@@ -73,7 +74,8 @@ return require("packer").startup({
 
     -- Using LSP to inject diagnostics, code-actions, formatting, hover,
     -- completion... from different tools
-    use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
+    use({ "jose-elias-alvarez/null-ls.nvim",
+      requires = "nvim-lua/plenary.nvim" })
 
     use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
     use("rafamadriz/friendly-snippets")
@@ -87,7 +89,8 @@ return require("packer").startup({
     use("jbyuki/one-small-step-for-vimkind")
 
     --> Telescope
-    use({ "nvim-telescope/telescope.nvim", tag = "0.1.0", requires = "nvim-lua/plenary.nvim" })
+    use({ "nvim-telescope/telescope.nvim", tag = "0.1.0",
+      requires = "nvim-lua/plenary.nvim" })
     --> FZY type sorted for telescope
     use("nvim-telescope/telescope-fzy-native.nvim")
     use("romgrk/fzy-lua-native")
@@ -101,7 +104,10 @@ return require("packer").startup({
       },
     })
 
-    --> Emoji in vim
+    -- File explorer
+    use({"nvim-tree/nvim-tree.lua", requires = "nvim-tree/nvim-web-devicons"})
+
+    -- Emoji in vim
     use("junegunn/vim-emoji")
 
     -- automatically setup configuration after cloning packer.nvim

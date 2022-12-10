@@ -11,11 +11,11 @@ require("user.colors")
 require("user.plugins")
 require("user.viml")
 
+require("plugins.nvim_tree")
 require("plugins.treesitter")
 require("plugins.indentblankline")
 require("plugins.toggleterm")
 
--- require("plugins.lsp.server_setup")
 require("plugins.lsp.setup")
 require("plugins.lsp.keymaps")
 require("plugins.lsp.cmp")
