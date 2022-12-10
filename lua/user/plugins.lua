@@ -76,7 +76,6 @@ return require("packer").startup({
     use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
 
     use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
-    use("saadparwaiz1/cmp_luasnip")
     use("rafamadriz/friendly-snippets")
 
     -- Debugger
