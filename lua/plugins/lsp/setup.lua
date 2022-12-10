@@ -16,9 +16,11 @@ local function Get_Capabilities()
   local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   if cmp_nvim_lsp_ok then
-    capabilities = vim.tbl_deep_extend("keep",
-      cmp_nvim_lsp.default_capabilities(), capabilities)
+    capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+    -- capabilities = vim.tbl_deep_extend("keep",
+    --   cmp_nvim_lsp.default_capabilities(), capabilities)
   end
+  capabilities.offsetEncoding = { "utf-16" } -- clangd uses utf-8 by default
   return capabilities
 end
 
@@ -75,8 +77,8 @@ local Settings = {
 local Servers = {
   "sumneko_lua",
   "tsserver",
-  "pyright",
-  "clangd", -- attaching null-ls gives problems with encoding?
+  -- "pyright",
+  "clangd",
   -- [["rust-analyzer"]],
 }
 
