@@ -1,1 +1,5 @@
-../../../.local/share/nvim/skeletons/skeleton.lua
+#!/usr/bin/env lua
+
+-- Author: Akalanka Edirisinghe <akalankae@gmail.com>
+-- Created on: <date>
+-- Last Modified on: <date> <time>
