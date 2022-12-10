@@ -80,6 +80,7 @@ local Servers = {
   -- "pyright",
   "clangd",
   -- [["rust-analyzer"]],
+  "vimls",
 }
 
 for _, server in ipairs(Servers) do
