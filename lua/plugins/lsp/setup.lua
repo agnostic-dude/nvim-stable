@@ -2,6 +2,10 @@
 -- Neovim Stable (version 0.8)
 -- Setting up builtin LSP
 --=============================================================================
+-- ISSUE: When 2 splits are opened with -O flag, first argument a text file &
+-- second argument a python script, user defined keymaps (plugins.lsp.keymaps)
+-- are not registered (as seen by output of :map). Need to LspRestart to amend
+-- this problem.
 
 local lsp_ok, lspconfig = pcall(require, "lspconfig")
 if not lsp_ok then
@@ -77,7 +81,7 @@ local Settings = {
 local Servers = {
   "sumneko_lua",
   "tsserver",
-  -- "pyright",
+  "pyright",
   "clangd",
   -- [["rust-analyzer"]],
   "vimls",
