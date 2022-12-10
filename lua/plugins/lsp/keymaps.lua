@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     bufmap("n", "gI", vim.lsp.buf.signature_help)
 
     -- Rename symbol
-    bufmap("n", "rn", vim.lsp.buf.rename)
+    bufmap("n", "<Leader>rn", vim.lsp.buf.rename)
 
     -- Select Code Action available at cursor position
     bufmap("n", "<Leader>ca", vim.lsp.buf.code_action)
@@ -39,10 +39,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     bufmap("n", "gl", vim.diagnostic.open_float)
 
     -- Move to Previous Diagnostic
-    bufmap("n", "dp", vim.diagnostic.goto_prev)
+    bufmap("n", "<Leader>dp", vim.diagnostic.goto_prev)
 
     -- Move to Next Diagnostic
-    bufmap("n", "dn", vim.diagnostic.goto_next)
+    bufmap("n", "<Leader>dn", vim.diagnostic.goto_next)
 
   end,
 
