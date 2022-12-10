@@ -11,7 +11,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     bufmap("n", "K", vim.lsp.buf.hover)
 
     -- Goto Definition
-    bufmap("n", "gd", vim.lsp.buf.definition)
+    -- bufmap("n", "gd", vim.lsp.buf.definition)
+    bufmap("n", "gd", function() vim.lsp.buf.definition({reuse_win=true}) end)
 
     -- Goto Declaration
     bufmap("n", "gD", vim.lsp.buf.declaration)
