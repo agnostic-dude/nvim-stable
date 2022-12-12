@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Goto Definition
     -- bufmap("n", "gd", vim.lsp.buf.definition)
-    bufmap("n", "gd", function() vim.lsp.buf.definition({reuse_win=true}) end)
+    bufmap("n", "gd", function() vim.lsp.buf.definition({ reuse_win = true }) end)
 
     -- Goto Declaration
     bufmap("n", "gD", vim.lsp.buf.declaration)
@@ -35,6 +35,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Select Code Action available at cursor position
     bufmap("n", "<Leader>ca", vim.lsp.buf.code_action)
     bufmap("i", "<Leader>ca", vim.lsp.buf.range_code_action)
+
+    -- Format selected portion or whole of it
+    -- NOTE: until format-on-save works for lua
+    bufmap("n", "<Leader>ff", vim.lsp.buf.format)
 
     -- Show diagnostics in floating window
     bufmap("n", "gl", vim.diagnostic.open_float)
