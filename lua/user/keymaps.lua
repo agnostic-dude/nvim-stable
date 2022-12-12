@@ -64,3 +64,8 @@ inoremap("<C-l>", "<Esc>viwUea") -- Captalize previous WORD
 nnoremap("<C-c>", "<cmd>tabclose<cr>")
 nnoremap("gn", "<cmd>tabnext<cr>") -- by default "gT"
 nnoremap("gp", "<cmd>tabprevious<cr>") -- by default "gT"
+
+-- Go up/down the page, keeping cursor in the middle of the screen
+-- credit Primagen
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
