@@ -15,6 +15,7 @@ require("plugins.nvim_tree")
 require("plugins.treesitter")
 require("plugins.indentblankline")
 require("plugins.toggleterm")
+require("plugins.gitsigns")
 
 require("plugins.lsp.setup")
 require("plugins.lsp.keymaps")

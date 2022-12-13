@@ -57,7 +57,7 @@ return require("packer").startup({
     use({ "nvim-lualine/lualine.nvim",
       requires = { "kyazdani42/nvim-web-devicons", opt = false } })
 
-    --> Git support
+    --> Git integration for buffers
     use({ "lewis6991/gitsigns.nvim", requires = "nvim-lua/plenary.nvim" })
 
     use({ "akinsho/toggleterm.nvim", tag = "*" }) -- * avoids breaking changes
