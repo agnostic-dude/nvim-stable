@@ -1,4 +1,16 @@
-require("toggleterm").setup{
+function _G.set_terminal_keymaps()
+  local opts = { buffer = 0 }
+  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "<C-h>", [[<cmd>wincmd h<cr>]], opts)
+  vim.keymap.set("t", "<C-j>", [[<cmd>wincmd j<cr>]], opts)
+  vim.keymap.set("t", "<C-k>", [[<cmd>wincmd k<cr>]], opts)
+  vim.keymap.set("t", "<C-l>", [[<cmd>wincmd l<cr>]], opts)
+end
+
+-- We only want these mapping for toggleterm
+vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
+
+require("toggleterm").setup {
   direction = "float", -- orient terminal as a floating terminal
   open_mapping = [[<Leader><Space>]], -- keymapping to toggle/untoggle terminal
   hide_number = true, -- hide line numbers
