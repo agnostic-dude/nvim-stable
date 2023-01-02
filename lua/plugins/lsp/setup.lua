@@ -1,6 +1,6 @@
 --=============================================================================
 -- Neovim Stable (version 0.8)
--- Setting up builtin LSP
+-- Setting up builtin LSP to launch language servers
 --=============================================================================
 -- ISSUE: When 2 splits are opened with -O flag, first argument a text file &
 -- second argument a python script, user defined keymaps (plugins.lsp.keymaps)
