@@ -37,3 +37,6 @@ o.cursorline = true -- highlight the line cursor is on
 -- Split windows
 o.splitright = true
 o.splitbelow = true
+
+-- Setup dictionary
+o.dictionary = "/usr/share/dict/allwords.txt"
