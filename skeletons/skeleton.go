@@ -1,8 +1,7 @@
-package main
-
 /*
- * Package documentation for consumption by godoc
+ * Doc comment
  */
+package main
 
 func main() {
 	// Application code goes here
