@@ -28,7 +28,7 @@ null_ls.setup({
 
     -- HTML/XML
     formatting.tidy.with({
-      extra_args = { "-wrap", "80" }, -- line length to wrap to
+      extra_args = { "-wrap", "80", "-indent", "auto" },
     }),
 
     -- Rust
