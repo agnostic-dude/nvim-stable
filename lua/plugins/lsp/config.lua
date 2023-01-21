@@ -20,7 +20,7 @@ end
 --   vim.lsp.protocol.make_client_capabilities()
 -- )
 -- NOTE: transferred from null-ls config
-local lsp_formatting = create_augroup("LspFormatting", { clear=true })
+local lsp_formatting = create_augroup("LspFormatting", { clear = true })
 
 local function on_attach(client, bufnr)
   -- TODO: fix below
@@ -34,12 +34,18 @@ local function on_attach(client, bufnr)
     --   client.server_capabilities.document_formatting = false
     --   client.server_capabilities.document_range_formatting = false
     -- end
-    vim.api.nvim_clear_autocmds({group=lsp_formatting, buffer=bufnr})
+    vim.api.nvim_clear_autocmds({ group = lsp_formatting, buffer = bufnr })
     create_autocmd("BufWritePre", {
       group = lsp_formatting,
       buffer = bufnr,
-      callback = function(client)
-        return client.name == "null-ls"
+      callback = function()
+        vim.lsp.buf.format({
+          bufnr = bufnr,
+          -- filter available formatters so that only null-ls receives request
+          filter = function()
+            return client.name == "null-ls"
+          end
+        })
       end,
     })
   end

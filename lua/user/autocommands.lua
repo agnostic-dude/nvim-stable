@@ -76,7 +76,12 @@ create_autocmd("BufNewFile", {
 
 create_autocmd("BufNewFile", {
   pattern = "*.html",
-  command = "0read ~/.local/share/nvim/templates/template.html",
+  command = "0read ~/.local/share/nvim/skeletons/skeleton.html",
+})
+
+create_autocmd("BufNewFile", {
+  pattern = "*.go",
+  command = "0read ~/.local/share/nvim/skeletons/skeleton.go",
 })
 
 -- Regenerate compiled loader file each time plugins config is updated

@@ -57,7 +57,7 @@ local Settings = {
       }
     },
   },
-  ["rust-analyzer"] = {
+  rust_analyzer = {
     imports = {
       granularity = {
         group = "module",
@@ -83,8 +83,9 @@ local Servers = {
   "tsserver",
   "pyright",
   "clangd",
-  -- [["rust-analyzer"]],
+  "rust_analyzer",
   "vimls",
+  "gopls",
 }
 
 for _, server in ipairs(Servers) do

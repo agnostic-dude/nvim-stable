@@ -54,6 +54,9 @@ nnoremap("<C-q>", "<C-w>q")
 -- Clear highlighted text with <Escape> key
 nnoremap("<Esc>", "<cmd>nohlsearch<Bar>:echo<CR>")
 
+-- Source current file
+nnoremap("<M-s>", "<cmd>source %<cr>")
+
 -- In INSERT mode;
 -- <C-u> deletes everything from cursor to the start of the line (UNDO LINE)
 -- <C-w> deletes the word before the cursor (UNDO WORD),
@@ -69,3 +72,7 @@ nnoremap("gp", "<cmd>tabprevious<cr>") -- by default "gT"
 -- credit Primagen
 nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
+
+-- Toggle Nvim-Tree
+nnoremap("<Leader>tt", "<cmd>NvimTreeToggle<cr>")
+nnoremap("<Leader>tf", "<cmd>NvimTreeFocus<cr>")

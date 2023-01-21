@@ -100,7 +100,10 @@ cmp.setup({
 require("luasnip.loaders.from_vscode").lazy_load()
 
 -- If you have custom snippets at "./path/to/my/snippets"
--- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./path/to/my/snippets" } })
+-- NOTE: above directory has to have a package.json file
+-- require("luasnip.loaders.from_vscode").lazy_load({
+--   paths = { "./path/to/my/snippets" }
+-- })
 
 -- nice symbols ⍟ ⎈ ⎊  ⍰ ⛭ 🌣 ✂  ✄  ✮ ✄  ✂  ✀
 

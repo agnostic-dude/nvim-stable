@@ -78,6 +78,7 @@ return require("packer").startup({
       requires = "nvim-lua/plenary.nvim" })
 
     use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
+    use("saadparwaiz1/cmp_luasnip")
     use("rafamadriz/friendly-snippets")
 
     -- Debugger
@@ -105,7 +106,7 @@ return require("packer").startup({
     })
 
     -- File explorer
-    use({"nvim-tree/nvim-tree.lua", requires = "nvim-tree/nvim-web-devicons"})
+    use({ "nvim-tree/nvim-tree.lua", requires = "nvim-tree/nvim-web-devicons" })
 
     -- Emoji in vim
     use("junegunn/vim-emoji")
