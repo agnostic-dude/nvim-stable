@@ -29,5 +29,6 @@ require("nvim-treesitter.configs").setup({
   --configs for nvim-ts-autotag
   autotag = {
     enable = true,
+    filetypes = { "html", "xml" },
   },
 })
