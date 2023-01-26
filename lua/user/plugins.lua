@@ -51,6 +51,8 @@ return require("packer").startup({
       requires = { "rktjmp/lush.nvim" } }
     )
 
+    use("norcalli/nvim-colorizer.lua") -- highlight colorcodes
+
     use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
     use("jiangmiao/auto-pairs")
     use({ "windwp/nvim-autopairs", -- lua autopair plugin supporting multiple chars
