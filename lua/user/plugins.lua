@@ -47,6 +47,9 @@ return require("packer").startup({
     use("navarasu/onedark.nvim") -- Based on Atom One dark & light themes
     use("liuchengxu/space-vim-theme") -- dark & light theme for space-vim
     use("rakr/vim-one") -- adaptation of one-light & one-dark
+    use({ "metalelf0/jellybeans-nvim", -- a lua port of jellybeans for neovim
+      requires = { "rktjmp/lush.nvim" } }
+    )
 
     use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
     use("jiangmiao/auto-pairs") -- insert/delete quotes, parens, brackets in pairs
