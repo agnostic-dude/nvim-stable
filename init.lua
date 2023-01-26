@@ -16,6 +16,7 @@ require("plugins.treesitter")
 require("plugins.indentblankline")
 require("plugins.toggleterm")
 require("plugins.gitsigns")
+require("plugins.colorizer")
 
 require("plugins.lsp.setup")
 require("plugins.lsp.keymaps")
