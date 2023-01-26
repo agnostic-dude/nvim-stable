@@ -52,6 +52,7 @@ return require("packer").startup({
     )
 
     use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
+    use("jiangmiao/auto-pairs")
     use({ "windwp/nvim-autopairs", -- lua autopair plugin supporting multiple chars
       config = function()
         require("nvim-autopairs").setup {}
