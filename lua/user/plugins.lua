@@ -52,7 +52,8 @@ return require("packer").startup({
     )
 
     use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
-    use("jiangmiao/auto-pairs") -- insert/delete quotes, parens, brackets in pairs
+    use("windwp/nvim-autopairs") -- lua autopair plugin supporting multiple chars
+    use("windwp/nvim-ts-autotag") -- use treesitter to autoclose/rename HTTP tags
     use("lukas-reineke/indent-blankline.nvim")
     use("RRethy/vim-illuminate") --> smart highlighting of words under cursor
 
