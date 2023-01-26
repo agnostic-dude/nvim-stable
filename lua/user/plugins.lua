@@ -108,8 +108,8 @@ return require("packer").startup({
     -- File explorer
     use({ "nvim-tree/nvim-tree.lua", requires = "nvim-tree/nvim-web-devicons" })
 
-    -- Emoji in vim
-    use("junegunn/vim-emoji")
+    use("junegunn/vim-emoji") -- Emoji in vim
+    use("onsails/lspkind-nvim") -- VSCode-like pictograms
 
     -- automatically setup configuration after cloning packer.nvim
     if packer_bootstrap then
