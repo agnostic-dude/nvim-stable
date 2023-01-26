@@ -26,4 +26,8 @@ require("nvim-treesitter.configs").setup({
     -- because highlight groups of ftplugin & treesitter are defined separately
     additional_vim_regex_highlighting = false, -- same as "syntax off"
   },
+  --configs for nvim-ts-autotag
+  autotag = {
+    enable = true,
+  },
 })
