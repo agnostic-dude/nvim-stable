@@ -51,7 +51,11 @@ return require("packer").startup({
       requires = { "rktjmp/lush.nvim" } }
     )
 
-    use("norcalli/nvim-colorizer.lua") -- highlight colorcodes
+    use({ "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("colorizer").setup()
+      end
+    }) -- highlight colorcodes
 
     use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
     use("jiangmiao/auto-pairs")
