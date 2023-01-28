@@ -44,7 +44,7 @@ nnoremap("<Leader>hv", "<C-w>t<C-w>H<C-w>l")
 -- NOTE: Assumes command is run from a horizontal split to right of first one
 nnoremap("<Leader>vh", "<C-w>t<C-w>K<C-w>j")
 
--- Ctrl-s to save in NORMAL & INSERT modes, and return to relavent mode
+-- Ctrl-s to save in NORMAL & INSERT modes, and return to relevant mode
 nnoremap("<C-s>", "<Cmd>w<CR>")
 inoremap("<C-s>", "<Esc><Cmd>w<CR>a")
 
@@ -76,3 +76,12 @@ nnoremap("<C-u>", "<C-u>zz")
 -- Toggle Nvim-Tree
 nnoremap("<Leader>tt", "<cmd>NvimTreeToggle<cr>")
 nnoremap("<Leader>tf", "<cmd>NvimTreeFocus<cr>")
+
+-- From "nvim-lua/kickstart.nvim"
+-- Make j/k move up/down using "visual" lines instead of actual lines, even when
+-- lines are wrapped with window splitting, when motion is not prepended by a
+-- count (e.g. k, not with 10k). Uses gk/gj instead of k/j, respectively, when
+-- a line count is not given.
+local opts = { expr = true, silent = true }
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", opts)
+vim.keymap.set("n", "j", "v:count == 0 ? 'gk' : 'j'", opts)
