@@ -84,4 +84,4 @@ nnoremap("<Leader>tf", "<cmd>NvimTreeFocus<cr>")
 -- a line count is not given.
 local opts = { expr = true, silent = true }
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", opts)
-vim.keymap.set("n", "j", "v:count == 0 ? 'gk' : 'j'", opts)
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", opts)
