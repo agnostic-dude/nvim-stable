@@ -42,12 +42,15 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    ["<CR>"] = cmp.mapping.confirm({
+      cmp.SelectBehavior.Replace,
+      select = false,
+    }),
     ["<up>"] = cmp.mapping.select_prev_item(select_opts),
     ["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
     ["<down>"] = cmp.mapping.select_next_item(select_opts),
     ["<C-n>"] = cmp.mapping.select_next_item(select_opts),
-    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.abort(),
 
