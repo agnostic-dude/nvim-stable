@@ -15,3 +15,5 @@ tests/
 pkg/
 src/
 plugin/**
+
+kickstartnvim.lua
