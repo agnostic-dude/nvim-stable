@@ -1,3 +1,4 @@
+-- Completion options
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- From nvim-cmp wiki Example-mappings#supertab-like-mappings#luasnip
