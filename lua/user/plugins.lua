@@ -41,7 +41,7 @@ return require("packer").startup({
       },
     })
 
-    -- themes
+    -- colorschemes/themes
     use("NLKNguyen/papercolor-theme") -- Based on Google's Material Design
     use("folke/tokyonight.nvim") -- Ported from TokyoNight of VSCode
     use("navarasu/onedark.nvim") -- Based on Atom One dark & light themes
@@ -50,6 +50,7 @@ return require("packer").startup({
     use({ "metalelf0/jellybeans-nvim", -- a lua port of jellybeans for neovim
       requires = { "rktjmp/lush.nvim" } }
     )
+    use("sainnhe/edge")
 
     use("norcalli/nvim-colorizer.lua") -- highlight colorcodes
 
@@ -73,23 +74,42 @@ return require("packer").startup({
     use({ "akinsho/toggleterm.nvim", tag = "*" }) -- * avoids breaking changes
 
     -- Language-Server Protocol
-    use("neovim/nvim-lspconfig") -- configs for builtin LSP client
-    use("hrsh7th/nvim-cmp") -- completion
-    use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
-    use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for builtin LSP
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-cmdline")
-    use({ "williamboman/mason.nvim",
-      requires = "williamboman/mason-lspconfig.nvim" })
+    use({
+      "neovim/nvim-lspconfig", -- configs for builtin LSP client
+      requires = {
+        -- Automatically install LSPs to stdpath for neovim
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
+
+        -- Useful status updates for LSP
+        'j-hui/fidget.nvim',
+
+        -- Additional lua configuration, makes nvim stuff amazing
+        'folke/neodev.nvim',
+      },
+    })
+
+    -- Autocompletion
+    use({
+      "hrsh7th/nvim-cmp", -- completion engine
+      requires = {
+        "hrsh7th/cmp-nvim-lsp", -- source for builtin LSP client
+        "hrsh7th/cmp-buffer", -- complete words from current buffer
+        "hrsh7th/cmp-path", -- complete file paths
+        "hrsh7th/cmp-nvim-lua", -- completions for neovim API functions
+        "hrsh7th/cmp-cmdline",
+        "saadparwaiz1/cmp_luasnip",
+        { "L3MON4D3/LuaSnip", version = "<CurrentMajor>.*" },
+      },
+    })
+
+    -- VSCode-like snippet collection
+    use("rafamadriz/friendly-snippets")
 
     -- Using LSP to inject diagnostics, code-actions, formatting, hover,
     -- completion... from different tools
     use({ "jose-elias-alvarez/null-ls.nvim",
       requires = "nvim-lua/plenary.nvim" })
-
-    use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
-    use("saadparwaiz1/cmp_luasnip")
-    use("rafamadriz/friendly-snippets")
 
     -- Debugger
     use("mfussenegger/nvim-dap")
@@ -100,8 +120,13 @@ return require("packer").startup({
     use("jbyuki/one-small-step-for-vimkind")
 
     --> Telescope
-    use({ "nvim-telescope/telescope.nvim", tag = "0.1.0",
-      requires = "nvim-lua/plenary.nvim" })
+    use({ "nvim-telescope/telescope.nvim", branch = "0.1.x",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "kdheepak/lazygit.nvim", -- use Lazygit within neovim
+      },
+    })
+
     --> FZY type sorted for telescope
     use("nvim-telescope/telescope-fzy-native.nvim")
     use("romgrk/fzy-lua-native")
@@ -126,6 +151,8 @@ return require("packer").startup({
       require("packer").sync()
     end
   end,
+
+  -- Custom floating window to display packer command output
   config = {
     display = {
       open_fn = function()

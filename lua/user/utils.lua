@@ -6,12 +6,12 @@
 --==============================================================================
 
 -- Map "lhs" keystrokes to "rhs" keystrokes, in NORMAL mode non-recurively
-function _G.nnoremap(lhs, rhs)
+function _G.Nnoremap(lhs, rhs)
   vim.keymap.set("n", lhs, rhs, { remap = false })
 end
 
 -- Map "lhs" keystrokes to "rhs" keystrokes, in INSERT mode non-recurively
-function _G.inoremap(lhs, rhs)
+function _G.Inoremap(lhs, rhs)
   vim.keymap.set("i", lhs, rhs, { remap = false })
 end
 
@@ -42,7 +42,7 @@ function _G.CmpTables(t1, t2)
         return false
       end
     elseif v ~= t2[k] then
-        return false
+      return false
     end
   end
   return true

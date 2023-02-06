@@ -17,43 +17,50 @@ cmp.setup({
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
-    end
+    end,
   },
-  sources = {
+  sources = cmp.config.sources({
+    -- Order dictates priority of completion suggestions
+    { name = "nvim_lua" }, -- source only enables itself inside of lua buffers
     { name = "path" },
     { name = "nvim_lsp", keyword_length = 3 },
-    { name = "buffer", keyword_length = 3 },
+    { name = "buffer", keyword_length = 5 },
     { name = "luasnip", keyword_length = 2 },
-  },
-  window = {
+  }),
+  window = { -- NOTE: Author will merge this to `view` in the future
     documentation = cmp.config.window.bordered()
   },
   formatting = {
     fields = { "menu", "abbr", "kind" },
-    format = function(entry, item)
-      local menu_icon = {
-        nvim_lsp = "🖳 ",
-        luasnip = "✀ ",
-        buffer = "🗐 ",
-        path = "🗁 ", -- 🖪
-
-      }
-      item.menu = menu_icon[entry.source.name]
-      return item
-    end,
+    format = require("lspkind").cmp_format({
+      mode = "symbol_text",
+      maxwidth = 50,
+      ellipsis_char = "...", -- when pop-up menu exceeds maxwidth
+      preset = "codicons",
+      -- menu = {
+      --   buffer = "[🗐  buf]",
+      --   nvim_lsp = "[🖳  LSP]",
+      --   nvim_lua = "[API]",
+      --   path = "[🗁  path]",
+      --   luasnip = "[✀  snip]",
+      -- },
+    }),
   },
   mapping = {
     ["<CR>"] = cmp.mapping.confirm({
       cmp.SelectBehavior.Replace,
       select = false,
     }),
-    ["<up>"] = cmp.mapping.select_prev_item(select_opts),
     ["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
-    ["<down>"] = cmp.mapping.select_next_item(select_opts),
     ["<C-n>"] = cmp.mapping.select_next_item(select_opts),
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.abort(),
+
+    -- NOTE: New from nvim-cmp https://github.com/hrsh7th/nvim-cmp/issues/231
+    -- ["<C-x><C-s>"] = cmp.mapping.complete({
+    --   config = { sources = { name = "luasnip" } }
+    -- }),
 
     -- Jump to next PLACEHOLDER in the snippet
     ["<C-j>"] = cmp.mapping(function(fallback)
@@ -61,6 +68,7 @@ cmp.setup({
         luasnip.jump(1)
       else
         fallback()
+        vim.notify("Cannot jump to next placeholder")
       end
     end, { "i", "s" }),
 
@@ -70,6 +78,7 @@ cmp.setup({
         luasnip.jump(-1)
       else
         fallback()
+        vim.notify("Cannot jump to previous placeholder")
       end
     end, { "i", "s" }),
 
@@ -97,7 +106,12 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-  }
+  },
+
+  -- NOTE: New from nvim-cmp https://github.com/hrsh7th/nvim-cmp/issues/231
+  -- Instead of expreimental.native_menu = true, following is added
+  view = { entries = "new" },
+  experimental = { ghost_text = true },
 })
 
 -- Load snippets from "friendly-snippets" using LuaSnip snippets engine
@@ -109,18 +123,37 @@ require("luasnip.loaders.from_vscode").lazy_load()
 --   paths = { "./path/to/my/snippets" }
 -- })
 
--- nice symbols ⍟ ⎈ ⎊  ⍰ ⛭ 🌣 ✂  ✄  ✮ ✄  ✂  ✀
-
--- Changing diagnostic icons
-local function Change_Diagnostic_Sign(opts)
-  vim.fn.sign_define(opts.name, {
-    text = opts.text,
-    texthl = opts.name,
-    numhl = "",
+-------------------------------------------------------------------------------
+-- configuration for specific filetypes
+-------------------------------------------------------------------------------
+cmp.setup.filetype("gitcommit", {
+  sources = cmp.config.sources({
+    { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = "buffer" },
   })
-end
+})
 
-Change_Diagnostic_Sign({ name = "DiagnosticSignError", text = "🕱 " })
-Change_Diagnostic_Sign({ name = "DiagnosticSignHint", text = "💡" })
-Change_Diagnostic_Sign({ name = "DiagnosticSignInfo", text = "ⓘ " })
-Change_Diagnostic_Sign({ name = "DiagnosticSignWarn", text = "⚠" })
+-------------------------------------------------------------------------------
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won"t
+-- work anymore).
+-------------------------------------------------------------------------------
+-- cmp.setup.cmdline({ "/", "?" }, {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = {
+--     { name = "buffer" }
+--   }
+-- })
+
+-------------------------------------------------------------------------------
+-- Use cmdline & path source for ":" (if you enabled `native_menu`, this won"t
+-- work anymore).
+-------------------------------------------------------------------------------
+-- cmp.setup.cmdline(":", {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = cmp.config.sources({
+--     { name = "path" }
+--   }, {
+--     { name = "cmdline" }
+--   })
+-- })

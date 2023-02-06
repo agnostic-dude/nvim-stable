@@ -1,103 +1,104 @@
+-- Alternative setup.lua
+-- This is the only file that is sourced directly by init.lua to setup the LSP
+-- configuration
 --=============================================================================
 -- Neovim Stable (version 0.8)
--- Setting up builtin LSP to launch language servers
+-- Setting up builtin LSP to launch relevant language server & attach buffer
 --=============================================================================
--- ISSUE: When 2 splits are opened with -O flag, first argument a text file &
--- second argument a python script, user defined keymaps (plugins.lsp.keymaps)
--- are not registered (as seen by output of :map). Need to LspRestart to amend
--- this problem.
+local keymaps = require("plugins.lsp.keymaps")
 
-local lsp_ok, lspconfig = pcall(require, "lspconfig")
-if not lsp_ok then
-  vim.notify("Cannot proceed: lspconfig not installed", vim.log.levels.INFO)
-  return
+local function on_attach(client, bufnr)
+  keymaps.Register(client, bufnr)
+
+  vim.api.nvim_buf_create_user_command(bufnr,
+    "Format", vim.lsp.buf.format,
+    { desc = "Format current buffer with LSP" }
+  )
 end
 
--- Get compilation of default capabilities & ones provided by nvim-cmp
--- cmp_nvim_lsp has more facilities for textDocument.completion; these are
--- added to defaults
-local function Get_Capabilities()
-  local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  if cmp_nvim_lsp_ok then
-    capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-    -- capabilities = vim.tbl_deep_extend("keep",
-    --   cmp_nvim_lsp.default_capabilities(), capabilities)
-  end
-  capabilities.offsetEncoding = { "utf-16" } -- clangd uses utf-8 by default
-  return capabilities
-end
-
-local Flags = {
-  -- num of msec to wait before sending "UpdateDocument" request to server
-  debounce_text_changes = 200, -- default = 150
-}
-
--- callback function to execute when language server is attached to a buffer
-local function On_Attach(client, bufnr)
-  vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
-  print(client.name .. " attached to buffer " .. bufnr)
-end
-
--- additional settings for INDIVIDUAL language servers
-local Settings = {
-  sumneko_lua = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" }, -- Get LSP to recognize "vim" global
-      },
-      workspace = {
-        -- make server aware of neovim runtime files
-        library = vim.api.nvim_get_runtime_file(".", true),
-        checkThirdParty = false,
-      },
-      runtime = {
-        version = "LuaJIT", -- Tell LSP which Lua version you're using
-        path = vim.o.runtimepath,
-      }
-    },
-  },
-  rust_analyzer = {
-    imports = {
-      granularity = {
-        group = "module",
-      },
-      prefix = "self",
-    },
-    cargo = {
-      buildScripts = {
-        enable = true,
-      },
-    },
-    procMacro = {
-      enable = true,
-    },
-    checkOnSave = {
-      command = "clippy",
-    },
-  },
-}
-
-local Servers = {
-  "sumneko_lua",
-  "tsserver",
-  "pyright",
-  "clangd",
-  "rust_analyzer",
-  "vimls",
-  "gopls",
-  "tailwindcss",
-}
-
-for _, server in ipairs(Servers) do
-  lspconfig[server].setup({
-    on_attach = On_Attach,
-
-    -- This data is sent to language server to announce what features editor
-    -- can support
-    capabilities = Get_Capabilities(),
-
-    flags = Flags,
-    settings = Settings[server],
+-------------------------------------------------------------------------------
+-- Customize diagnostic icons
+-------------------------------------------------------------------------------
+local function change_diagnostic_sign(opts)
+  vim.fn.sign_define(opts.name, {
+    text = opts.text,
+    texthl = opts.name,
+    numhl = "",
   })
 end
+
+local diagnostic_signs = {
+  error   = { name = "DiagnosticSignError", text = "🕱 " },
+  hint    = { name = "DiagnosticSignHint", text = "💡" },
+  info    = { name = "DiagnosticSignInfo", text = "ⓘ " },
+  warning = { name = "DiagnosticSignWarn", text = "⚠" },
+}
+
+for _, opts in pairs(diagnostic_signs) do
+  change_diagnostic_sign(opts)
+end
+
+-- Setup mason so it can manage external tooling
+local neodev_ok, neodev = pcall(require, "neodev")
+if neodev_ok then
+  neodev.setup()
+end
+
+-- Turn on lsp status information
+local fidget_ok, fidget = pcall(require, 'fidget')
+if fidget_ok then
+  fidget.setup()
+end
+
+local servers = require("plugins.lsp.servers")
+local mason = require("plugins.lsp.mason")
+
+-------------------------------------------------------------------------------
+-- Capabilities
+-------------------------------------------------------------------------------
+-- nvim-cmp supports additional completion capabilities, so broadcast that
+-- to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if cmp_nvim_lsp_ok then
+  -- extend default capabilities
+  cmp_nvim_lsp.default_capabilities(capabilities)
+else
+  vim.notify("Needs cmp_nvim_lsp", vim.log.levels.ERROR)
+end
+capabilities.offsetEncoding = { "utf-16" } -- clangd uses utf-8 by default
+
+if mason ~= nil then
+  mason.setup()
+  mason.lspconfig.setup({
+    ensure_installed = vim.tbl_keys(servers)
+  })
+
+  local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+  if lspconfig_ok then
+    mason.lspconfig.setup_handlers({
+      function(server_name)
+        lspconfig[server_name].setup({
+          capabilities = capabilities,
+          on_attach = on_attach,
+          settings = servers[server_name],
+          flags = {
+            -- num of milliseconds to wait before next "updateDocument" request
+            -- is sent to the language server (default is 150ms)
+            debounce_text_changes = 250,
+          },
+        })
+      end,
+    })
+  else
+    vim.notify("Need to install lspconfig", vim.log.levels.ERROR)
+  end
+else
+  vim.notify("Need to install mason", vim.log.levels.ERROR)
+end
+
+-- Setup completion engine
+require("plugins.lsp.cmp")
+
+-- Setup null-ls for non-LSP tools, if it is available
+require("plugins.lsp.null")

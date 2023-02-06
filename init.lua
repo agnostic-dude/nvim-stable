@@ -17,11 +17,10 @@ require("plugins.indentblankline")
 require("plugins.toggleterm")
 require("plugins.gitsigns")
 require("plugins.colorizer")
+require("plugins.telescope")
 
-require("plugins.lsp.setup")
-require("plugins.lsp.keymaps")
-require("plugins.lsp.cmp")
-require("plugins.lsp.null")
+-- Setup all LSP related plugins by sourcing lua/plugins/lsp/init.lua
+require("plugins.lsp")
 
 require("plugins.dap.adapter_setup")
 require("plugins.dap.dapui")
