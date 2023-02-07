@@ -111,13 +111,14 @@ return require("packer").startup({
     use({ "jose-elias-alvarez/null-ls.nvim",
       requires = "nvim-lua/plenary.nvim" })
 
-    -- Debugger
+    -- Debugger Adapter Protocol (DAP)
     use("mfussenegger/nvim-dap")
-    use("mfussenegger/nvim-dap-python")
+    use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
     use("nvim-telescope/telescope-dap.nvim") -- Telescope support
-    use("rcarriga/nvim-dap-ui")
     use("jbyuki/one-small-step-for-vimkind")
+    use("mfussenegger/nvim-dap-python")
+    use("leoluz/nvim-dap-go")
 
     --> Telescope
     use({ "nvim-telescope/telescope.nvim", branch = "0.1.x",
