@@ -21,8 +21,9 @@ require("plugins.telescope")
 
 -- Setup all LSP related plugins by sourcing lua/plugins/lsp/init.lua
 require("plugins.lsp")
+require("plugins.dap")
 
-require("plugins.dap.adapter_setup")
-require("plugins.dap.dapui")
-require("plugins.dap.keymaps")
-require("plugins.dap.virtual_text")
+-- require("plugins.dap.adapter_setup")
+-- require("plugins.dap.dapui")
+-- require("plugins.dap.keymaps")
+-- require("plugins.dap.virtual_text")
