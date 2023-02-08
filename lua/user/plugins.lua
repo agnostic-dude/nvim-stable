@@ -84,7 +84,7 @@ return require("packer").startup({
         -- Useful status updates for LSP
         'j-hui/fidget.nvim',
 
-        -- Additional lua configuration, makes nvim stuff amazing
+        -- signature help, docs & completion for neovim lua API
         'folke/neodev.nvim',
       },
     })
