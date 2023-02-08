@@ -41,7 +41,9 @@ end
 -- Setup mason so it can manage external tooling
 local neodev_ok, neodev = pcall(require, "neodev")
 if neodev_ok then
-  neodev.setup()
+  neodev.setup({
+    library = { plugins = { "nvim-dap-ui" }, types = true },
+  })
 end
 
 -- Turn on lsp status information
