@@ -88,10 +88,14 @@ dap.adapters.delve = {
 
 require("dap-go").setup()
 
+-- Lua/nlua
 dap.configurations.lua = {
   type = "nlua",
   request = "attach",
   name = "Attach to running neovim instance",
+  port = function()
+    return tonumber(vim.fn.input("Port: "))
+  end,
 }
 
 dap.adapters.nlua = function(callback, config)
