@@ -21,6 +21,8 @@ require("plugins.telescope")
 
 -- Setup all LSP related plugins by sourcing lua/plugins/lsp/init.lua
 require("plugins.lsp")
+
+-- Setup DAP related plugins
 require("plugins.dap")
 
 -- require("plugins.dap.adapter_setup")
