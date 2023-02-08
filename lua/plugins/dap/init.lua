@@ -1,6 +1,5 @@
 -- Dap config
 local dap = require("dap")
-local dap_ui = require("dap.ui.widgets")
 
 -- Keymappings
 Nnoremap("<M-b>", dap.toggle_breakpoint) -- toggle BREAKPOINT
@@ -25,6 +24,16 @@ end)
 Nnoremap("<Leader>dL", function() require("osv").launch({ port = 8086 }) end)
 Nnoremap("<Leader>du", require("dap.ui.widgets").hover)
 
+-- Setting up DAP-UI
+local dapui_ok, dapui = pcall(require, "dapui")
+if dapui_ok then
+  dapui.setup()
+  Nnoremap("<Leader>do", dapui.open)
+  Nnoremap("<Leader>dc", dapui.close)
+  Nnoremap("<Leader>dt", dapui.toggle)
+else
+  vim.notify_once("Need to install nvim-dap-ui")
+end
 
 dap.configurations.go = {
   {
