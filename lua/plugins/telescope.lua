@@ -35,7 +35,7 @@ require('telescope').setup({
 telescope.load_extension("fzy_native")
 
 local builtin = require("telescope.builtin")
-Nnoremap("<Leader>ss", builtin.grep_string)
+Nnoremap("<Leader>ss", builtin.live_grep)
 Nnoremap("<Leader>sf", builtin.find_files)
 Nnoremap("<Leader>sb", builtin.buffers)
 Nnoremap("<Leader>sh", builtin.help_tags)
