@@ -25,8 +25,3 @@ require("plugins.lsp")
 
 -- Setup DAP related plugins
 require("plugins.dap")
-
--- require("plugins.dap.adapter_setup")
--- require("plugins.dap.dapui")
--- require("plugins.dap.keymaps")
--- require("plugins.dap.virtual_text")
