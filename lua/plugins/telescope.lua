@@ -32,7 +32,7 @@ require('telescope').setup({
 
 -- To get fzy loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
-telescope.load_extension("fzy_native")
+telescope.load_extension("fzf")
 
 local builtin = require("telescope.builtin")
 Nnoremap("<Leader>ss", builtin.live_grep)

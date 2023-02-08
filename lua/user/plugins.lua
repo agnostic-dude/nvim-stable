@@ -128,9 +128,8 @@ return require("packer").startup({
       },
     })
 
-    --> FZY type sorted for telescope
-    use("nvim-telescope/telescope-fzy-native.nvim")
-    use("romgrk/fzy-lua-native")
+    --> fzf fuzzy finder for telescope
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
     -- Refactoring library based-off of book by Martin Fowler
     use({
