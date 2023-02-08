@@ -46,6 +46,9 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
+-- Setting up DAP virtual text
+require("nvim-dap-virtual-text").setup()
+
 dap.configurations.go = {
   {
     type = "delve",
