@@ -2,13 +2,28 @@
 local dap = require("dap")
 local dap_ui = require("dap.ui.widgets")
 
-Nnoremap("<C-b>", dap.toggle_breakpoint)
-Nnoremap("<C-a>", dap.continue)
-Nnoremap("<F2>", dap.step_over)
-Nnoremap("<F3>", dap.step_into)
-Nnoremap("<F4>", dap.step_out)
+-- Keymappings
+Nnoremap("<M-b>", dap.toggle_breakpoint) -- toggle BREAKPOINT
+
+Nnoremap("<M-c>", function() -- CONTINUE
+  dap.continue()
+  vim.notify("continuing to next breakpoint", vim.log.levels.INFO)
+end)
+Nnoremap("<F2>", function() -- STEP OVER
+  dap.step_over()
+  vim.notify("stepping over", vim.log.levels.INFO)
+end)
+Nnoremap("<F3>", function() -- STEP INTO
+  dap.step_into()
+  vim.notify("stepping into", vim.log.levels.INFO)
+end)
+Nnoremap("<F4>", function() -- STEP OUT
+  dap.step_out()
+  vim.notify("stepping out", vim.log.levels.INFO)
+end)
+-- Launch lua debugger
 Nnoremap("<Leader>dL", function() require("osv").launch({ port = 8086 }) end)
-Nnoremap("<Leader>du", dap_ui.hover)
+Nnoremap("<Leader>du", require("dap.ui.widgets").hover)
 
 
 dap.configurations.go = {
