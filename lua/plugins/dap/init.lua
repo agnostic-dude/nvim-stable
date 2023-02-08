@@ -150,3 +150,23 @@ table.insert(dap.configurations.python, {
   console = "integratedTerminal",
 })
 
+-- C/C++/Rust (with lldb-vscode)
+dap.adapters.lldb = {
+  type = "executable",
+  command = "/usr/share/bin/lldb-vscode",
+  name = "lldb",
+}
+
+dap.configurations.c = {
+  name = "Launch",
+  type = "lldb-vscode",
+  request = "launch",
+  program = function()
+    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+  end,
+  cwd = "${workspaceFolder}",
+  stopOnEntry = false,
+  args = {},
+}
+
+dap.configurations.rust = dap.configurations.c
