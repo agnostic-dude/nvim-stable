@@ -49,6 +49,11 @@ end
 -- Setting up DAP virtual text
 require("nvim-dap-virtual-text").setup()
 
+-------------------------------------------------------------------------------
+-- Configs for individual debuggers
+-------------------------------------------------------------------------------
+
+-- Golang/Delve
 dap.configurations.go = {
   {
     type = "delve",
@@ -81,11 +86,7 @@ dap.adapters.delve = {
   }
 }
 
-require("dap-go").setup({
-  on_attach = function()
-    -- code
-  end
-})
+require("dap-go").setup()
 
 dap.configurations.lua = {
   type = "nlua",
