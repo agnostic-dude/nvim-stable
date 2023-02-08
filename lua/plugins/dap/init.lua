@@ -101,3 +101,52 @@ dap.configurations.lua = {
 dap.adapters.nlua = function(callback, config)
   callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
 end
+
+-- Python/Debugpy
+local dap_python_ok, dap_python = pcall(require, "dap-python")
+if dap_python_ok then
+  dap_python.setup("~/.virtualenvs/debugpy/bin/python")
+end
+
+-- source: https://www.reddit.com/r/neovim/comments/u014b4/a_convenient_python_dap_configuration/
+dap.configurations.python = dap.configurations.python or {}
+table.insert(dap.configurations.python, {
+  type = "python",
+  request = "launch",
+  name = "launch with options",
+  program = "${file}",
+  python = function() end,
+  pythonPath = function()
+    local path
+    for _, server in pairs(vim.lsp.get_active_clients()) do
+      path = vim.tbl_get(server, "config", "settings", "python", "pythonPath")
+      if path then
+        break
+      end
+    end
+    path = vim.fn.input("Python path: ", path or "", "file")
+    return path ~= "" and vim.fn.expand(path) or nil
+  end,
+
+  args = function()
+    local args = {}
+    local i = 1
+    while true do
+      local arg = vim.fn.input("Argument [" .. i .. "]: ")
+      if arg == "" then
+        break
+      end
+      args[i] = arg
+      i = i + 1
+    end
+    return args
+  end,
+  justMyCode = function()
+    return vim.fn.input("justMyCode? [y/n]: ") == "y"
+  end,
+  stopOnEntry = function()
+    return vim.fn.input("justMyCode? [y/n]: ") == "y"
+  end,
+  console = "integratedTerminal",
+})
+
