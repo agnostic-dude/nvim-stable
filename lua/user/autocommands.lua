@@ -68,7 +68,9 @@ create_autocmd("FileType", {
   callback = function() Inoremap("</", "</<C-x><C-o>") end,
 })
 
+-------------------------------------------------------------------------------
 -- Source relevant skeleton source file
+-------------------------------------------------------------------------------
 create_autocmd("BufNewFile", {
   pattern = "*.py",
   command = "0read ~/.local/share/nvim/skeletons/skeleton.py",
