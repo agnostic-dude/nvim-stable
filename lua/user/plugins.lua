@@ -51,6 +51,7 @@ return require("packer").startup({
       requires = { "rktjmp/lush.nvim" } }
     )
     use("sainnhe/edge")
+    use("catppuccin/nvim")
 
     use("norcalli/nvim-colorizer.lua") -- highlight colorcodes
 
