@@ -59,6 +59,7 @@ return require("packer").startup({
     use("jiangmiao/auto-pairs")
     use("lukas-reineke/indent-blankline.nvim")
     use("RRethy/vim-illuminate") --> smart highlighting of words under cursor
+    use({ "junegunn/goyo.vim", ['for'] = "markdown" }) -- distraction free writing
 
     --> Statusline
     use({ "nvim-lualine/lualine.nvim",

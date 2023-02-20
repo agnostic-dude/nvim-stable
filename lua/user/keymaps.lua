@@ -85,3 +85,6 @@ Nnoremap("<Leader>tf", "<cmd>NvimTreeFocus<cr>")
 local opts = { expr = true, silent = true }
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", opts)
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", opts)
+
+-- Toggle/untoggle distraction-free writing with goyo.vim
+Nnoremap("<Leader>gy", "<cmd>Goyo<cr>")
