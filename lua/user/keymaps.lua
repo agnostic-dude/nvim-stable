@@ -31,6 +31,13 @@ vim.api.nvim_create_autocmd("VimLeave", {
 -- Setup global LEADER key
 vim.g.mapleader = ";"
 
+-- Ctrl-q closes current split, without CTRL+w
+Nnoremap("<C-q>", "<C-w>q")
+
+-- Ctrl-s to save in NORMAL & INSERT modes, and return to relevant mode
+Nnoremap("<C-s>", "<Cmd>w<CR>")
+Inoremap("<C-s>", "<Esc><Cmd>w<CR>a")
+
 -- Navigate between splits in NORMAL mode without CTRL+w
 Nnoremap("<C-l>", "<C-w>l") --> Goto split on left
 Nnoremap("<C-h>", "<C-w>h") --> Goto split on right
@@ -44,14 +51,7 @@ Nnoremap("<Leader>hv", "<C-w>t<C-w>H<C-w>l")
 -- NOTE: Assumes command is run from a horizontal split to right of first one
 Nnoremap("<Leader>vh", "<C-w>t<C-w>K<C-w>j")
 
--- Ctrl-s to save in NORMAL & INSERT modes, and return to relevant mode
-Nnoremap("<C-s>", "<Cmd>w<CR>")
-Inoremap("<C-s>", "<Esc><Cmd>w<CR>a")
-
--- Ctrl-q closes current split, without CTRL+w
-Nnoremap("<C-q>", "<C-w>q")
-
--- Clear highlighted text with <Escape> key
+-- Clear currently highlighted text with <Escape> key
 Nnoremap("<Esc>", "<cmd>nohlsearch<Bar>:echo<CR>")
 
 -- Source current file
