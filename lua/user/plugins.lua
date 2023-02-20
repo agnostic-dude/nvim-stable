@@ -44,14 +44,13 @@ return require("packer").startup({
     -- colorschemes/themes
     use("NLKNguyen/papercolor-theme") -- Based on Google's Material Design
     use("folke/tokyonight.nvim") -- Ported from TokyoNight of VSCode
-    use("navarasu/onedark.nvim") -- Based on Atom One dark & light themes
     use("liuchengxu/space-vim-theme") -- dark & light theme for space-vim
-    use("rakr/vim-one") -- adaptation of one-light & one-dark
     use({ "metalelf0/jellybeans-nvim", -- a lua port of jellybeans for neovim
       requires = { "rktjmp/lush.nvim" } }
     )
     use("sainnhe/edge")
     use("catppuccin/nvim")
+    use("arturgoms/moonbow.nvim") -- inspired by gruvbox & ayu dark
 
     use("norcalli/nvim-colorizer.lua") -- highlight colorcodes
 
