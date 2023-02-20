@@ -70,6 +70,7 @@ create_autocmd("FileType", {
 
 -------------------------------------------------------------------------------
 -- Source relevant skeleton source file
+-- Source relevant skeleton file
 -------------------------------------------------------------------------------
 create_autocmd("BufNewFile", {
   pattern = "*.py",
