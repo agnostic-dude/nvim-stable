@@ -57,11 +57,6 @@ return require("packer").startup({
     use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
     use("tpope/vim-surround") -- delete/change/add quotes, parens, XML tags
     use("jiangmiao/auto-pairs")
-    use({ "windwp/nvim-autopairs", -- lua autopair plugin supporting multiple chars
-      config = function()
-        require("nvim-autopairs").setup {}
-      end })
-    use("windwp/nvim-ts-autotag") -- use treesitter to autoclose/rename HTTP tags
     use("lukas-reineke/indent-blankline.nvim")
     use("RRethy/vim-illuminate") --> smart highlighting of words under cursor
 
