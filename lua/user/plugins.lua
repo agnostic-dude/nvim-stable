@@ -55,6 +55,7 @@ return require("packer").startup({
     use("norcalli/nvim-colorizer.lua") -- highlight colorcodes
 
     use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
+    use("tpope/vim-surround") -- delete/change/add quotes, parens, XML tags
     use("jiangmiao/auto-pairs")
     use({ "windwp/nvim-autopairs", -- lua autopair plugin supporting multiple chars
       config = function()
