@@ -50,7 +50,6 @@ return require("lazy").setup({
     dependencies = { "rktjmp/lush.nvim" } },
 
   "sainnhe/edge",
-  "catppuccin/nvim",
   "arturgoms/moonbow.nvim", -- inspired by gruvbox & ayu dark
 
   "norcalli/nvim-colorizer.lua", -- highlight colorcodes
