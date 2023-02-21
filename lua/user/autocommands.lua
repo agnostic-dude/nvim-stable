@@ -86,15 +86,6 @@ create_autocmd("BufNewFile", {
   command = "0read ~/.local/share/nvim/skeletons/skeleton.go",
 })
 
--- Regenerate compiled loader file each time plugins config is updated
-create_autocmd("BufWritePost", {
-  pattern = "plugins.lua",
-  command = "source <afile> | PackerCompile | echo 'regenerated loader file'",
-  desc = "Regenerate loader file on config update",
-  group = create_augroup("PackerCompileOnUpdate", { clear = true })
-}
-)
-
 -- AUTO-PAIRS "FLY-MODE"
 -- Auto-pairs "Fly Mode" enables jumping out of nested closed pairs easier.
 -- Works for ), ] &  }. Instead of inserting parentheses.
@@ -111,7 +102,10 @@ create_autocmd("VimEnter", {
   desc = "Register auto-pairs Fly Mode to activate",
   pattern = "*",
   callback = function()
-    if packer_plugins["auto-pairs"] then
+    local lazy = require("lazy")
+    if not vim.tbl_isempty(lazy) and vim.tbl_contains(vim.tbl_map(function(plugin)
+      return plugin.name
+    end, lazy.plugins()), "auto-pairs") then
       vim.g.AutoPairsFlyMode = 1
       vim.g.AutoPairsShortcutBackInsert = "<C-b>"
     end

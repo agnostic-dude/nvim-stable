@@ -2,159 +2,139 @@
 -- Neovim Stable (version 0.8)
 -- Lua configuration: plugins
 --=============================================================================
-local function ensure_packer()
-  local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  -- if packer.nvim not found, git clone it
-  if fn.empty(fn.glob(install_path)) == 1 then
-    print("Installing packer for the first time...")
-    fn.system({
-      "git", "clone", "--depth", "1",
-      "https://github.com/wbthomason/packer.nvim", install_path
-    })
-    vim.cmd("packadd packer.nvim")
-    return true
-  end
-  return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
+return require("lazy").setup({
 
-return require("packer").startup({
-  function(use)
-    -- self-manage packer plugin manager
-    use("wbthomason/packer.nvim")
-
-    -- Treesitter
-    use({ "nvim-treesitter/nvim-treesitter",
-      requires = "nvim-treesitter/nvim-treesitter-textobjects",
-      run = function()
-        require("nvim-treesitter.install").update({ with_sync = true })()
-      end,
-    })
-    use("p00f/nvim-ts-rainbow") --> color matched parenthesis with treesitter
-    use({
-      "folke/trouble.nvim",
-      requires = {
-        "kyazdani42/nvim-web-devicons",
-        "folke/lsp-colors.nvim", -- create highlight groups missing from theme
-      },
-    })
-
-    -- colorschemes/themes
-    use("NLKNguyen/papercolor-theme") -- Based on Google's Material Design
-    use("folke/tokyonight.nvim") -- Ported from TokyoNight of VSCode
-    use("liuchengxu/space-vim-theme") -- dark & light theme for space-vim
-    use({ "metalelf0/jellybeans-nvim", -- a lua port of jellybeans for neovim
-      requires = { "rktjmp/lush.nvim" } }
-    )
-    use("sainnhe/edge")
-    use("catppuccin/nvim")
-    use("arturgoms/moonbow.nvim") -- inspired by gruvbox & ayu dark
-
-    use("norcalli/nvim-colorizer.lua") -- highlight colorcodes
-
-    use("tpope/vim-commentary") -- comment/uncomment with gcc/gc
-    use("tpope/vim-surround") -- delete/change/add quotes, parens, XML tags
-    use("jiangmiao/auto-pairs")
-    use("lukas-reineke/indent-blankline.nvim")
-    use("RRethy/vim-illuminate") --> smart highlighting of words under cursor
-    use({ "junegunn/goyo.vim", ['for'] = "markdown" }) -- distraction free writing
-
-    --> Statusline
-    use({ "nvim-lualine/lualine.nvim",
-      requires = { "kyazdani42/nvim-web-devicons", opt = false } })
-
-    --> Git integration for buffers
-    use({ "lewis6991/gitsigns.nvim", requires = "nvim-lua/plenary.nvim" })
-
-    use({ "akinsho/toggleterm.nvim", tag = "*" }) -- * avoids breaking changes
-
-    -- Language-Server Protocol
-    use({
-      "neovim/nvim-lspconfig", -- configs for builtin LSP client
-      requires = {
-        -- Automatically install LSPs to stdpath for neovim
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-
-        -- Useful status updates for LSP
-        'j-hui/fidget.nvim',
-
-        -- signature help, docs & completion for neovim lua API
-        'folke/neodev.nvim',
-      },
-    })
-
-    -- Autocompletion
-    use({
-      "hrsh7th/nvim-cmp", -- completion engine
-      requires = {
-        "hrsh7th/cmp-nvim-lsp", -- source for builtin LSP client
-        "hrsh7th/cmp-buffer", -- complete words from current buffer
-        "hrsh7th/cmp-path", -- complete file paths
-        "hrsh7th/cmp-nvim-lua", -- completions for neovim API functions
-        "hrsh7th/cmp-cmdline",
-        "saadparwaiz1/cmp_luasnip",
-        { "L3MON4D3/LuaSnip", version = "<CurrentMajor>.*" },
-      },
-    })
-
-    -- VSCode-like snippet collection
-    use("rafamadriz/friendly-snippets")
-
-    -- Using LSP to inject diagnostics, code-actions, formatting, hover,
-    -- completion... from different tools
-    use({ "jose-elias-alvarez/null-ls.nvim",
-      requires = "nvim-lua/plenary.nvim" })
-
-    -- Debugger Adapter Protocol (DAP)
-    use("mfussenegger/nvim-dap")
-    use("rcarriga/nvim-dap-ui")
-    use("theHamsta/nvim-dap-virtual-text")
-    use("nvim-telescope/telescope-dap.nvim") -- Telescope support
-    use("jbyuki/one-small-step-for-vimkind")
-    use("mfussenegger/nvim-dap-python")
-    use("leoluz/nvim-dap-go")
-
-    --> Telescope
-    use({ "nvim-telescope/telescope.nvim", branch = "0.1.x",
-      requires = {
-        "nvim-lua/plenary.nvim",
-        "kdheepak/lazygit.nvim", -- use Lazygit within neovim
-      },
-    })
-
-    --> fzf fuzzy finder for telescope
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-
-    -- Refactoring library based-off of book by Martin Fowler
-    use({
-      "ThePrimeagen/refactoring.nvim",
-      requires = {
-        "nvim-lua/plenary.nvim",
-        "nvim-treesitter/nvim-treesitter",
-      },
-    })
-
-    -- File explorer
-    use({ "nvim-tree/nvim-tree.lua", requires = "nvim-tree/nvim-web-devicons" })
-
-    use("junegunn/vim-emoji") -- Emoji in vim
-    use("onsails/lspkind-nvim") -- VSCode-like pictograms
-
-    -- automatically setup configuration after cloning packer.nvim
-    if packer_bootstrap then
-      require("packer").sync()
-    end
-  end,
-
-  -- Custom floating window to display packer command output
-  config = {
-    display = {
-      open_fn = function()
-        return require("packer.util").float({ border = "solid" })
-      end,
-    }
+  -- Treesitter
+  { "nvim-treesitter/nvim-treesitter",
+    dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
+    build = function()
+      require("nvim-treesitter.install").update({ with_sync = true })()
+    end,
   },
+  "p00f/nvim-ts-rainbow", -- color matched parenthesis with treesitter
+  {
+    "folke/trouble.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "folke/lsp-colors.nvim", -- create highlight groups missing from theme
+    },
+  },
+
+  -- colorschemes/themes
+  { "NLKNguyen/papercolor-theme", -- Based on Google's Material Design
+  },
+  "folke/tokyonight.nvim", -- Ported from TokyoNight of VSCode
+  "liuchengxu/space-vim-theme", -- dark & light theme for space-vim
+  { "metalelf0/jellybeans-nvim", -- a lua port of jellybeans for neovim
+    dependencies = { "rktjmp/lush.nvim" } },
+
+  "sainnhe/edge",
+  "catppuccin/nvim",
+  "arturgoms/moonbow.nvim", -- inspired by gruvbox & ayu dark
+
+  "norcalli/nvim-colorizer.lua", -- highlight colorcodes
+
+  "tpope/vim-commentary", -- comment/uncomment with gcc/gc
+  "tpope/vim-surround", -- delete/change/add quotes, parens, XML tags
+  "jiangmiao/auto-pairs",
+  "lukas-reineke/indent-blankline.nvim",
+  "RRethy/vim-illuminate", --> smart highlighting of words under cursor
+  { "junegunn/goyo.vim", ft = "markdown" }, -- distraction free writing
+
+  --> Statusline
+  { "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" } },
+
+  --> Git integration for buffers
+  { "lewis6991/gitsigns.nvim", dependencies = "nvim-lua/plenary.nvim" },
+
+  { "akinsho/toggleterm.nvim" }, -- * avoids breaking changes
+
+  -- Language-Server Protocol
+  {
+    "neovim/nvim-lspconfig", -- configs for builtin LSP client
+    dependencies = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
+
+      -- signature help, docs & completion for neovim lua API
+      'folke/neodev.nvim',
+    },
+  },
+
+  -- Autocompletion
+  {
+    "hrsh7th/nvim-cmp", -- completion engine
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp", -- source for builtin LSP client
+      "hrsh7th/cmp-buffer", -- complete words from current buffer
+      "hrsh7th/cmp-path", -- complete file paths
+      "hrsh7th/cmp-nvim-lua", -- completions for neovim API functions
+      "hrsh7th/cmp-cmdline",
+      "saadparwaiz1/cmp_luasnip",
+      { "L3MON4D3/LuaSnip", version = "<CurrentMajor>.*" },
+    },
+  },
+
+  -- VSCode-like snippet collection
+  "rafamadriz/friendly-snippets",
+
+  -- Using LSP to inject diagnostics, code-actions, formatting, hover,
+  -- completion... from different tools
+  { "jose-elias-alvarez/null-ls.nvim",
+    dependencies = "nvim-lua/plenary.nvim" },
+
+  -- Debugger Adapter Protocol (DAP)
+  "mfussenegger/nvim-dap",
+  "rcarriga/nvim-dap-ui",
+  "theHamsta/nvim-dap-virtual-text",
+  "nvim-telescope/telescope-dap.nvim", -- Telescope support
+  "jbyuki/one-small-step-for-vimkind",
+  "mfussenegger/nvim-dap-python",
+  "leoluz/nvim-dap-go",
+
+  --> Telescope
+  { "nvim-telescope/telescope.nvim", branch = "0.1.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "kdheepak/lazygit.nvim", -- use Lazygit within neovim
+    },
+  },
+
+  --> fzf fuzzy finder for telescope
+  --> NOTE: This does not make the binary "libfzf.so", you have to go to the
+  --> plugin directory and run make manually
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+
+  -- Refactoring library based-off of book by Martin Fowler
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+
+  -- File explorer
+  { "nvim-tree/nvim-tree.lua", dependencies = "nvim-tree/nvim-web-devicons" },
+
+  "junegunn/vim-emoji", -- Emoji in vim
+  "onsails/lspkind-nvim", -- VSCode-like pictograms
 })
