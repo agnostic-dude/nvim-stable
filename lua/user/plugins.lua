@@ -35,6 +35,14 @@ return require("lazy").setup({
 
   -- colorschemes/themes
   { "NLKNguyen/papercolor-theme", -- Based on Google's Material Design
+    lazy = false,
+    priority = 1000,
+    config = function()
+      if vim.fn.has("termguicolors") then
+        vim.o.termguicolors = true
+        vim.cmd([[ colorscheme PaperColor ]])
+      end
+    end,
   },
   "folke/tokyonight.nvim", -- Ported from TokyoNight of VSCode
   "liuchengxu/space-vim-theme", -- dark & light theme for space-vim

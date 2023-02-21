@@ -7,7 +7,6 @@ require("user.settings")
 require("user.utils")
 require("user.keymaps")
 require("user.autocommands")
-require("user.colors")
 require("user.plugins")
 require("user.viml")
 
