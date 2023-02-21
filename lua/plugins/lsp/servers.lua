@@ -12,7 +12,7 @@ local servers = {
   tailwindcss = {},
 
   -- Lua
-  sumneko_lua = {
+  lua_ls = {
     Lua = {
       diagnostics = {
         globals = { "vim" }, -- Get LSP to recognize "vim" global

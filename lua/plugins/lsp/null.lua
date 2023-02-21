@@ -46,7 +46,7 @@ null_ls.setup({
     -- Stylua needs a project based stylua.toml or .stylua.toml
     -- formatting.stylua,
 
-    -- TODO: error: lua-format is not executable (sumneko_lua can format now!)
+    -- TODO: error: lua-format is not executable (lua_ls can format now!)
     -- formatting.lua_format.with({
     --   extra_args = {
     --     "--no-keep-simple-function-one-line",
@@ -86,7 +86,7 @@ null_ls.setup({
             bufnr = bufnr,
             -- filter available formatters so that only null-ls receives request
             filter = function()
-              return client.name ~= "sumneko_lua" and client.name == "null-ls"
+              return client.name ~= "lua_ls" and client.name == "null-ls"
             end
           })
         end,
