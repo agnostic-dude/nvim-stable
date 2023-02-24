@@ -6,13 +6,15 @@
 --==============================================================================
 
 -- Map "lhs" keystrokes to "rhs" keystrokes, in NORMAL mode non-recurively
-function _G.Nnoremap(lhs, rhs)
-  vim.keymap.set("n", lhs, rhs, { remap = false })
+function _G.Nnoremap(lhs, rhs, opts)
+  opts = vim.tbl_extend("keep", { remap = false }, opts or {})
+  vim.keymap.set("n", lhs, rhs, opts)
 end
 
 -- Map "lhs" keystrokes to "rhs" keystrokes, in INSERT mode non-recurively
-function _G.Inoremap(lhs, rhs)
-  vim.keymap.set("i", lhs, rhs, { remap = false })
+function _G.Inoremap(lhs, rhs, opts)
+  opts = vim.tbl_extend("keep", { remap = false }, opts or {})
+  vim.keymap.set("i", lhs, rhs, opts)
 end
 
 _G.create_autocmd = vim.api.nvim_create_autocmd
