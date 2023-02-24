@@ -14,7 +14,7 @@ o.shiftwidth = 4 -- indentation
 o.cindent = true
 o.breakindent = true
 
--- Text dispaly area setup
+-- Text display area setup
 o.textwidth = 80 -- max line length
 o.signcolumn = 'auto' -- hide signcolumn if there is nothing to show
 o.colorcolumn = '+0' -- highlight last legal column
@@ -31,7 +31,7 @@ o.undofile = true
 
 -- Graphical
 g.mouse = 'a'
-o.digraph = true
+o.digraph = false -- disabled to prevent non-ASCII chars on command line
 o.cursorline = true -- highlight the line cursor is on
 
 -- Split windows
