@@ -10,7 +10,7 @@ vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↵"
 
 require("indent_blankline").setup {
-  show_current_context = true,
+  show_current_context = false,
   show_current_context_start = true,
   char_list = { "│", "╎", "┆", "┊" }, -- indentline at each level of indentation
   space_char_blankline = " ",
@@ -22,4 +22,5 @@ require("indent_blankline").setup {
     "IndentBlanklineIndent5",
     "IndentBlanklineIndent6",
   },
+  use_treesitter = true,
 }
