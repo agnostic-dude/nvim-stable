@@ -60,6 +60,7 @@ return require("lazy").setup({
   "lukas-reineke/indent-blankline.nvim",
   "RRethy/vim-illuminate", --> smart highlighting of words under cursor
   { "junegunn/goyo.vim", ft = "markdown" }, -- distraction free writing
+  "vimwiki/vimwiki",
 
   --> Statusline
   { "nvim-lualine/lualine.nvim",
