@@ -1,4 +1,5 @@
 -- Dap config
+-- This is the only file neovim uses
 local dap = require("dap")
 
 -- Keymappings
