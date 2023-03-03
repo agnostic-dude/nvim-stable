@@ -55,7 +55,7 @@ Nnoremap("<Leader>vh", "<C-w>t<C-w>K<C-w>j")
 Nnoremap("<Esc>", "<cmd>nohlsearch<Bar>:echo<CR>")
 
 -- Source current file
-Nnoremap("<M-s>", "<cmd>source %<cr>")
+Nnoremap("<M-s>", "<cmd>source %<cr>", { desc = "Source current file" })
 
 -- In INSERT mode;
 -- <C-u> deletes everything from cursor to the start of the line (UNDO LINE)
