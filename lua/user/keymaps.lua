@@ -35,8 +35,8 @@ vim.g.mapleader = ";"
 Nnoremap("<C-q>", "<C-w>q")
 
 -- Ctrl-s to save in NORMAL & INSERT modes, and return to relevant mode
-Nnoremap("<C-s>", "<Cmd>w<CR>")
-Inoremap("<C-s>", "<Esc><Cmd>w<CR>a")
+Nnoremap("<C-s>", "<Cmd>update<CR>", { desc = "write buffer if modified" })
+Inoremap("<C-s>", "<Esc><Cmd>update<CR>a", { desc = "write buffer if modified" })
 
 -- Navigate between splits in NORMAL mode without CTRL+w
 Nnoremap("<C-l>", "<C-w>l") --> Goto split on left
