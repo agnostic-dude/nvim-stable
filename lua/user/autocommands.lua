@@ -71,6 +71,12 @@ create_autocmd("FileType", {
 -------------------------------------------------------------------------------
 -- Source relevant skeleton file
 -------------------------------------------------------------------------------
+
+create_autocmd("BufNewFile", {
+  pattern = "*.sh",
+  command = "0read ~/.local/share/nvim/skeletons/skeleton.sh",
+})
+
 create_autocmd("BufNewFile", {
   pattern = "*.py",
   command = "0read ~/.local/share/nvim/skeletons/skeleton.py",
