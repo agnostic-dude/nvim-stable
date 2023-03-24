@@ -62,6 +62,10 @@ null_ls.setup({
     formatting.beautysh,
     diagnostics.shellcheck.with({ diagnostics_format = "#{m} [#{c}]" }),
 
+    -- Refactoring library based on book by Martin Fowler
+    -- using thePrimeagen/refactoring.nvim plugin
+    code_actions.refactoring,
+
     -- Git
     code_actions.gitsigns, -- provide code actions from GitSigns
 
