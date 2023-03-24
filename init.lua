@@ -18,6 +18,7 @@ require("plugins.gitsigns")
 require("plugins.colorizer")
 require("plugins.telescope")
 require("plugins.devicons")
+require("plugins.lualine")
 
 -- Setup all LSP related plugins by sourcing lua/plugins/lsp/init.lua
 require("plugins.lsp")
