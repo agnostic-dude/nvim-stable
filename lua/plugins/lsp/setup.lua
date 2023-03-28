@@ -38,6 +38,17 @@ for _, opts in pairs(diagnostic_signs) do
   change_diagnostic_sign(opts)
 end
 
+-- Configure diagnostic messages and the like
+vim.diagnostic.config({
+  -- virtual_text = false,
+  severity_sort = true,
+  float = {
+    border = 'rounded',
+    source = 'always',
+  }
+})
+
+
 -- Setup mason so it can manage external tooling
 local neodev_ok, neodev = pcall(require, "neodev")
 if neodev_ok then
