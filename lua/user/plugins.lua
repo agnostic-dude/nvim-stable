@@ -51,6 +51,7 @@ return require("lazy").setup({
 
   "sainnhe/edge",
   "arturgoms/moonbow.nvim", -- inspired by gruvbox & ayu dark
+  "rebelot/kanagawa.nvim", -- dark theme inspired by Katsushika Hokusai painting
 
   "norcalli/nvim-colorizer.lua", -- highlight colorcodes
 
