@@ -49,7 +49,6 @@ return require("lazy").setup({
   { "metalelf0/jellybeans-nvim", -- a lua port of jellybeans for neovim
     dependencies = { "rktjmp/lush.nvim" } },
 
-  "sainnhe/edge",
   "arturgoms/moonbow.nvim", -- inspired by gruvbox & ayu dark
   "rebelot/kanagawa.nvim", -- dark theme inspired by Katsushika Hokusai painting
 
