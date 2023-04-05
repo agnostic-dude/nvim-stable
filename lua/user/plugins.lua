@@ -34,7 +34,8 @@ return require("lazy").setup({
   },
 
   -- colorschemes/themes
-  { "NLKNguyen/papercolor-theme", -- Based on Google's Material Design
+  -- NOTE: plugins with `lazy = true` will NOT show up on pop-up menu
+  { "NLKNguyen/papercolor-theme", -- Based on Google's Material Design (default)
     lazy = false,
     priority = 1000,
     config = function()
@@ -44,13 +45,15 @@ return require("lazy").setup({
       end
     end,
   },
-  "folke/tokyonight.nvim", -- Ported from TokyoNight of VSCode
-  "liuchengxu/space-vim-theme", -- dark & light theme for space-vim
+  { "folke/tokyonight.nvim", lazy = false }, -- Ported from TokyoNight of VSCode
+  { "liuchengxu/space-vim-theme", lazy = false }, -- dark & light theme for space-vim
   { "metalelf0/jellybeans-nvim", -- a lua port of jellybeans for neovim
-    dependencies = { "rktjmp/lush.nvim" } },
+    dependencies = { "rktjmp/lush.nvim" },
+    lazy = false,
+  },
 
-  "arturgoms/moonbow.nvim", -- inspired by gruvbox & ayu dark
-  "rebelot/kanagawa.nvim", -- dark theme inspired by Katsushika Hokusai painting
+  { "arturgoms/moonbow.nvim", lazy = false }, -- inspired by gruvbox & ayu dark
+  { "rebelot/kanagawa.nvim", lazy = false }, -- dark theme inspired by Katsushika Hokusai painting
 
   "norcalli/nvim-colorizer.lua", -- highlight colorcodes
 
