@@ -97,7 +97,7 @@ return require("lazy").setup({
       "hrsh7th/cmp-nvim-lua", -- completions for neovim API functions
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
-      { "L3MON4D3/LuaSnip", version = "<CurrentMajor>.*" },
+      { "L3MON4D3/LuaSnip", version = "<CurrentMajor>.*", build = "make install_jsregexp" },
     },
   },
 
