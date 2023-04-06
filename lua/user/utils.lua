@@ -55,3 +55,9 @@ function _G.CmpTables(t1, t2)
   end
   return true
 end
+
+-- If nvim-notify plugin is available use it to show notifications
+local has_notify, notify = pcall(require, "notify")
+if has_notify then
+  vim.notify = notify
+end

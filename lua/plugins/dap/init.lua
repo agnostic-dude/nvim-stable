@@ -33,7 +33,7 @@ if dapui_ok then
   Nnoremap("<Leader>dc", dapui.close)
   Nnoremap("<Leader>dt", dapui.toggle)
 else
-  vim.notify_once("Need to install nvim-dap-ui")
+  vim.notify("Need to install nvim-dap-ui")
 end
 
 -- use nvim-dap events to open and close windows automatically
