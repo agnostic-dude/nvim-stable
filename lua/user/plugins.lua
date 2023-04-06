@@ -59,13 +59,16 @@ return require("lazy").setup({
   { "arturgoms/moonbow.nvim", lazy = false }, -- inspired by gruvbox & ayu dark
   { "rebelot/kanagawa.nvim", lazy = false }, -- dark theme inspired by Katsushika Hokusai painting
 
+  --===========================================================================
+  --                            Utilities
+  --===========================================================================
   "norcalli/nvim-colorizer.lua", -- highlight colorcodes
 
   "tpope/vim-commentary", -- comment/uncomment with gcc/gc
   "tpope/vim-surround", -- delete/change/add quotes, parens, XML tags
   "jiangmiao/auto-pairs",
   "lukas-reineke/indent-blankline.nvim",
-  "RRethy/vim-illuminate", --> smart highlighting of words under cursor
+  "RRethy/vim-illuminate", -- smart highlighting of words under cursor
   { "junegunn/goyo.vim", ft = "markdown" }, -- distraction free writing
   "vimwiki/vimwiki",
 
