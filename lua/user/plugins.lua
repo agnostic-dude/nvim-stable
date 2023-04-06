@@ -69,6 +69,7 @@ return require("lazy").setup({
   "jiangmiao/auto-pairs",
   "lukas-reineke/indent-blankline.nvim",
   "RRethy/vim-illuminate", -- smart highlighting of words under cursor
+  { "rcarriga/nvim-notify", lazy = true }, -- configurable notification manager
   { "junegunn/goyo.vim", ft = "markdown" }, -- distraction free writing
   "vimwiki/vimwiki",
 
