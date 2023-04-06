@@ -86,14 +86,14 @@ return require("lazy").setup({
     "neovim/nvim-lspconfig", -- configs for builtin LSP client
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
 
       -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      "j-hui/fidget.nvim",
 
       -- signature help, docs & completion for neovim lua API
-      'folke/neodev.nvim',
+      "folke/neodev.nvim",
     },
   },
 
@@ -127,7 +127,6 @@ return require("lazy").setup({
   "mfussenegger/nvim-dap",
   "rcarriga/nvim-dap-ui",
   "theHamsta/nvim-dap-virtual-text",
-  "nvim-telescope/telescope-dap.nvim", -- Telescope support
   "jbyuki/one-small-step-for-vimkind",
   "mfussenegger/nvim-dap-python",
   "leoluz/nvim-dap-go",
@@ -141,6 +140,7 @@ return require("lazy").setup({
       "kdheepak/lazygit.nvim", -- use Lazygit within neovim
     },
   },
+  "nvim-telescope/telescope-dap.nvim", -- telescope support for DAP
 
   --> fzf fuzzy finder for telescope
   --> NOTE: This does not make the binary "libfzf.so", you have to go to the
