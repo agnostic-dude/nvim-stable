@@ -17,7 +17,9 @@ vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
 
-  -- Treesitter
+  --===========================================================================
+  --                            Treesitter
+  --===========================================================================
   { "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
     build = function()
@@ -33,7 +35,9 @@ return require("lazy").setup({
     },
   },
 
-  -- colorschemes/themes
+  --===========================================================================
+  --                        Colorschemes
+  --===========================================================================
   -- NOTE: plugins with `lazy = true` will NOT show up on pop-up menu
   { "NLKNguyen/papercolor-theme", -- Based on Google's Material Design (default)
     lazy = false,
@@ -65,16 +69,19 @@ return require("lazy").setup({
   { "junegunn/goyo.vim", ft = "markdown" }, -- distraction free writing
   "vimwiki/vimwiki",
 
-  --> Statusline
+  -- Statusline
   { "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" } },
 
-  --> Git integration for buffers
+  -- Git integration for buffers
   { "lewis6991/gitsigns.nvim", dependencies = "nvim-lua/plenary.nvim" },
 
+  -- Floating terminal
   { "akinsho/toggleterm.nvim" }, -- * avoids breaking changes
 
-  -- Language-Server Protocol
+  --===========================================================================
+  --            Language-Server Protocol (LSP) Configuration
+  --===========================================================================
   {
     "neovim/nvim-lspconfig", -- configs for builtin LSP client
     dependencies = {
@@ -90,7 +97,9 @@ return require("lazy").setup({
     },
   },
 
-  -- Autocompletion
+  --===========================================================================
+  --                        Auto-completion
+  --===========================================================================
   {
     "hrsh7th/nvim-cmp", -- completion engine
     dependencies = {
@@ -112,7 +121,9 @@ return require("lazy").setup({
   { "jose-elias-alvarez/null-ls.nvim",
     dependencies = "nvim-lua/plenary.nvim" },
 
-  -- Debugger Adapter Protocol (DAP)
+  --===========================================================================
+  --                    Debugger Adapter Protocol (DAP)
+  --===========================================================================
   "mfussenegger/nvim-dap",
   "rcarriga/nvim-dap-ui",
   "theHamsta/nvim-dap-virtual-text",
@@ -121,7 +132,9 @@ return require("lazy").setup({
   "mfussenegger/nvim-dap-python",
   "leoluz/nvim-dap-go",
 
-  --> Telescope
+  --===========================================================================
+  --                            Telescope
+  --===========================================================================
   { "nvim-telescope/telescope.nvim", branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -143,7 +156,9 @@ return require("lazy").setup({
     },
   },
 
-  -- File explorer
+  --===========================================================================
+  --                        File explorer
+  --===========================================================================
   { "nvim-tree/nvim-tree.lua", dependencies = "nvim-tree/nvim-web-devicons" },
 
   "junegunn/vim-emoji", -- Emoji in vim
