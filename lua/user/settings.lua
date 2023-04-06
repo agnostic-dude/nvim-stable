@@ -2,41 +2,48 @@
 -- Neovim Stable (version 0.8)
 -- Lua configuration: settings
 --=========================================================================
-local o = vim.opt
-local g = vim.g
 
--- Whitespace
-o.expandtab = true
-o.softtabstop = 4
-o.shiftwidth = 4 -- indentation
+local options = {
+  -- Whitespace
+  expandtab = true,
+  softtabstop = 4,
+  shiftwidth = 4, -- indentation
 
--- Indentation
-o.cindent = true
-o.breakindent = true
+  cindent = true,
+  breakindent = true,
 
--- Text display area setup
-o.textwidth = 80 -- max line length
-o.signcolumn = 'auto' -- hide signcolumn if there is nothing to show
-o.colorcolumn = '+0' -- highlight last legal column
+  textwidth = 80, -- max line length
+  signcolumn = "auto", -- hide signcolumn if there is nothing to show
+  colorcolumn = "+0", -- highlight last legal column
 
--- Show line numbers
-o.number = true
+  number = true, -- show line numbers
 
--- Search settings
-o.ignorecase = true
-o.smartcase = true
+  -- search settings
+  ignorecase = true,
+  smartcase = true,
 
--- Save undo history
-o.undofile = true
+  undofile = true,
 
--- Graphical
-g.mouse = 'a'
-o.digraph = false -- disabled to prevent non-ASCII chars on command line
-o.cursorline = true -- highlight the line cursor is on
+  -- Graphical
+  mouse = "a",
+  digraph = false, -- disabled to prevent non-ASCII chars on command line
+  cursorline = true, -- highlight the line cursor is on
 
--- Split windows
-o.splitright = true
-o.splitbelow = true
+  splitright = true,
+  splitbelow = true,
 
--- Setup dictionary
-o.dictionary = "/usr/share/dict/allwords.txt"
+  dictionary = "/usr/share/dict/allwords.txt"
+}
+
+for option, value in pairs(options) do
+  vim.opt[option] = value
+end
+
+vim.cmd([[filetype plugin indent on]])
+
+-- UI theme in 24-bit RGB color TUI
+if vim.fn.has("termguicolors") then
+  vim.o.termguicolors = true
+else
+  vim.notify_once("Terminal does not have GUI colors", vim.log.levels.WARN)
+end
