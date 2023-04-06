@@ -118,3 +118,14 @@ create_autocmd("VimEnter", {
   end,
   group = create_augroup("ActivateAutoPairsFlyMode", { clear = true }),
 })
+
+-- move cursor to the last position it was, when the file was last opened
+-- source: https://builtin.com/software-engineering-perspectives/neovim-configuration
+create_autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
+      vim.cmd([[ execute  "normal! g'\"" ]])
+    end
+  end
+})
