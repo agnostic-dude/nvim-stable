@@ -23,7 +23,6 @@ function _G.Vnoremap(lhs, rhs, opts)
   vim.keymap.set("v", lhs, rhs, opts)
 end
 
-
 _G.create_autocmd = vim.api.nvim_create_autocmd
 _G.create_augroup = vim.api.nvim_create_augroup
 
