@@ -17,6 +17,13 @@ function _G.Inoremap(lhs, rhs, opts)
   vim.keymap.set("i", lhs, rhs, opts)
 end
 
+-- Map "lhs" keystrokes to "rhs" keystrokes, in VISUAL mode non-recurively
+function _G.Vnoremap(lhs, rhs, opts)
+  opts = vim.tbl_extend("keep", { remap = false }, opts or {})
+  vim.keymap.set("v", lhs, rhs, opts)
+end
+
+
 _G.create_autocmd = vim.api.nvim_create_autocmd
 _G.create_augroup = vim.api.nvim_create_augroup
 
