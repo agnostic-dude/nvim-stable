@@ -211,4 +211,15 @@ return require("lazy").setup({
 
   "junegunn/vim-emoji", -- Emoji in vim
   "onsails/lspkind-nvim", -- VSCode-like pictograms
-})
+},
+
+  -----------------------------
+  -- Configs for plugin manager
+  -----------------------------
+  {
+    lockfile = vim.fn.stdpath("config") .. "/.lazy-lock.json",
+    install = {
+      -- try one of these themes when starting an installation during startup
+      colorscheme = { "moonbow", "jellybeans-nvim", "habamax" },
+    }
+  })
