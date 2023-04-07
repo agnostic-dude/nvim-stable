@@ -55,6 +55,11 @@ cmp.setup({
       --   luasnip = "[✀  snip]",
       -- },
     }),
+    -- format = function(entry, vim_item)
+    --   -- Fancy icons and a name of kind
+    --   vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+    --   return vim_item
+    -- end,
   },
   mapping = {
     ["<CR>"] = cmp.mapping.confirm({
