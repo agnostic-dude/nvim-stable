@@ -17,6 +17,12 @@ vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
 
+  -----------------------------
+  -- List of plugins
+  -----------------------------
+  --===========================================================================
+  --                            Utilities
+  --===========================================================================
   -- configurable notification manager
   { "rcarriga/nvim-notify", lazy = true,
     config = function()
@@ -30,11 +36,21 @@ return require("lazy").setup({
       vim.notify("Loaded " .. plugin.name, INFO)
     end },
 
+  "tpope/vim-commentary", -- comment/uncomment with gcc/gc
+  "tpope/vim-surround", -- delete/change/add quotes, parens, XML tags
+  "jiangmiao/auto-pairs",
+
   { "lukas-reineke/indent-blankline.nvim",
     config = function(plugin)
       require("plugins.indentblankline")
       vim.notify("Loaded " .. plugin.name, INFO)
     end },
+
+  "RRethy/vim-illuminate", -- smart highlighting of words under cursor
+
+  { "junegunn/goyo.vim", ft = "markdown" }, -- distraction free writing
+  "vimwiki/vimwiki",
+
   -- Statusline
   { "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -102,16 +118,6 @@ return require("lazy").setup({
 
   { "arturgoms/moonbow.nvim", lazy = false }, -- inspired by gruvbox & ayu dark
   { "rebelot/kanagawa.nvim", lazy = false }, -- dark theme inspired by Katsushika Hokusai painting
-
-  --===========================================================================
-  --                            Utilities
-  --===========================================================================
-  "tpope/vim-commentary", -- comment/uncomment with gcc/gc
-  "tpope/vim-surround", -- delete/change/add quotes, parens, XML tags
-  "jiangmiao/auto-pairs",
-  "RRethy/vim-illuminate", -- smart highlighting of words under cursor
-  { "junegunn/goyo.vim", ft = "markdown" }, -- distraction free writing
-  "vimwiki/vimwiki",
 
   --===========================================================================
   --            Language-Server Protocol (LSP) Configuration
