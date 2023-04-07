@@ -179,6 +179,10 @@ return require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "kdheepak/lazygit.nvim", -- use Lazygit within neovim
     },
+    config = function(plugin)
+      require("plugins.telescope")
+      vim.notify("Loaded " .. plugin.name, INFO)
+    end
   },
   "nvim-telescope/telescope-dap.nvim", -- telescope support for DAP
 
