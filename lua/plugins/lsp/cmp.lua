@@ -14,6 +14,15 @@ local luasnip = require("luasnip")
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
+  -- preselect = cmp.PreselectMode.Item,
+  enabled = function()
+    local in_prompt = vim.api.nvim_buf_get_option(0, "buftype") == "prompt"
+    if in_prompt then
+      return false
+    end
+    local context = require "cmp.config.context"
+    return not (context.in_treesitter_capture "comment" == true or context.in_syntax_group "Comment")
+  end,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -28,7 +37,8 @@ cmp.setup({
     { name = "luasnip", keyword_length = 2 },
   }),
   window = { -- NOTE: Author will merge this to `view` in the future
-    documentation = cmp.config.window.bordered()
+    documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
   },
   formatting = {
     fields = { "menu", "abbr", "kind" },
