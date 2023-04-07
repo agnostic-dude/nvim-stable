@@ -47,13 +47,6 @@ cmp.setup({
       maxwidth = 50,
       ellipsis_char = "...", -- when pop-up menu exceeds maxwidth
       preset = "codicons",
-      -- menu = {
-      --   buffer = "[🗐  buf]",
-      --   nvim_lsp = "[🖳  LSP]",
-      --   nvim_lua = "[API]",
-      --   path = "[🗁  path]",
-      --   luasnip = "[✀  snip]",
-      -- },
     }),
     -- format = function(entry, vim_item)
     --   -- Fancy icons and a name of kind
