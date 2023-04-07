@@ -42,7 +42,7 @@ local function map_keys(client, bufnr)
 
   -- Format selected portion or whole of it: ;ff
   -- NOTE: until format-on-save works for lua
-  nmap("<Leader>ff", vim.lsp.buf.format, bufnr, "[f]ormat [f]ile")
+  nmap("<Leader>%", vim.lsp.buf.format, bufnr, "[f]ormat [f]ile")
 
   -- Show diagnostics in floating window: gl
   nmap("gl", vim.diagnostic.open_float, bufnr,
