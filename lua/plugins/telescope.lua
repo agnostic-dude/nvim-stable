@@ -35,11 +35,11 @@ require('telescope').setup({
 telescope.load_extension("fzf")
 
 local builtin = require("telescope.builtin")
-Nnoremap("<Leader>ss", builtin.live_grep, { desc = "[s]earch [s]tring" })
-Nnoremap("<Leader>sf", builtin.find_files, { desc = "[s]earch [f]ile" })
-Nnoremap("<Leader>sb", builtin.buffers, { desc = "[s]earch [b]buffers" })
-Nnoremap("<Leader>sh", builtin.help_tags, { desc = "[s]earch [h]elp tags" })
-Nnoremap("<Leader>sd", builtin.diagnostics, { desc = "[s]earch [d]iagnostic msgs" })
+Nnoremap("<Leader>fs", builtin.live_grep, { desc = "[f]ind [s]tring" })
+Nnoremap("<Leader>ff", builtin.find_files, { desc = "[f]ind [f]ile" })
+Nnoremap("<Leader>fb", builtin.buffers, { desc = "[f]ind [b]buffers" })
+Nnoremap("<Leader>fh", builtin.help_tags, { desc = "[f]ind [h]elp tags" })
+Nnoremap("<Leader>fd", builtin.diagnostics, { desc = "[f]ind [d]iagnostic msgs" })
 
 -- Lazygit
 local lazygit = require("plugins.lazygit")
