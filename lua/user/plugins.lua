@@ -110,12 +110,6 @@ return require("lazy").setup({
     end,
   },
   { "folke/tokyonight.nvim", lazy = false }, -- Ported from TokyoNight of VSCode
-  { "liuchengxu/space-vim-theme", lazy = false }, -- dark & light theme for space-vim
-  { "metalelf0/jellybeans-nvim", -- a lua port of jellybeans for neovim
-    dependencies = { "rktjmp/lush.nvim" },
-    lazy = false,
-  },
-
   { "arturgoms/moonbow.nvim", lazy = false }, -- inspired by gruvbox & ayu dark
   { "rebelot/kanagawa.nvim", lazy = false }, -- dark theme inspired by Katsushika Hokusai painting
 
