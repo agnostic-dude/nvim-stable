@@ -10,8 +10,8 @@ require("user.autocommands")
 require("user.plugins")
 require("user.viml")
 
--- Setup all LSP related plugins by sourcing lua/plugins/lsp/init.lua
-require("plugins.lsp")
+-- Setup language server (LSP server-client communication)
+require("plugins.lsp") -- source lua/plugins/lsp/init.lua
 
--- Setup DAP related plugins
+-- Setup debugger (Debugger-Debug adapter-DAP client)
 require("plugins.dap")
