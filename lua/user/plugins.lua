@@ -17,6 +17,46 @@ vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
 
+  -- configurable notification manager
+  { "rcarriga/nvim-notify", lazy = true,
+    config = function()
+      vim.notify = require("notify")
+    end },
+
+  -- highlight colorcodes
+  { "norcalli/nvim-colorizer.lua",
+    config = function(plugin)
+      require("plugins.colorizer")
+      vim.notify("Loaded " .. plugin.name, INFO)
+    end },
+
+  { "lukas-reineke/indent-blankline.nvim",
+    config = function(plugin)
+      require("plugins.indentblankline")
+      vim.notify("Loaded " .. plugin.name, INFO)
+    end },
+  -- Statusline
+  { "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function(plugin)
+      require("plugins.lualine")
+      vim.notify("Loaded " .. plugin.name, INFO)
+    end },
+
+  -- Git integration for buffers
+  { "lewis6991/gitsigns.nvim", dependencies = "nvim-lua/plenary.nvim",
+    config = function(plugin)
+      require("plugins.gitsigns")
+      vim.notify("Loaded " .. plugin.name, INFO)
+    end },
+
+  -- Floating terminal
+  { "akinsho/toggleterm.nvim", -- * avoids breaking changes
+    config = function(plugin)
+      require("plugins.toggleterm")
+      vim.notify("Loaded " .. plugin.name, INFO)
+    end },
+
   --===========================================================================
   --                            Treesitter
   --===========================================================================
@@ -25,6 +65,10 @@ return require("lazy").setup({
     build = function()
       require("nvim-treesitter.install").update({ with_sync = true })()
     end,
+    config = function(plugin)
+      require("plugins.treesitter")
+      vim.notify("Loaded " .. plugin.name, INFO)
+    end
   },
   "p00f/nvim-ts-rainbow", -- color matched parenthesis with treesitter
   {
@@ -62,26 +106,12 @@ return require("lazy").setup({
   --===========================================================================
   --                            Utilities
   --===========================================================================
-  "norcalli/nvim-colorizer.lua", -- highlight colorcodes
-
   "tpope/vim-commentary", -- comment/uncomment with gcc/gc
   "tpope/vim-surround", -- delete/change/add quotes, parens, XML tags
   "jiangmiao/auto-pairs",
-  "lukas-reineke/indent-blankline.nvim",
   "RRethy/vim-illuminate", -- smart highlighting of words under cursor
-  { "rcarriga/nvim-notify", lazy = true }, -- configurable notification manager
   { "junegunn/goyo.vim", ft = "markdown" }, -- distraction free writing
   "vimwiki/vimwiki",
-
-  -- Statusline
-  { "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" } },
-
-  -- Git integration for buffers
-  { "lewis6991/gitsigns.nvim", dependencies = "nvim-lua/plenary.nvim" },
-
-  -- Floating terminal
-  { "akinsho/toggleterm.nvim" }, -- * avoids breaking changes
 
   --===========================================================================
   --            Language-Server Protocol (LSP) Configuration
@@ -163,7 +193,11 @@ return require("lazy").setup({
   --===========================================================================
   --                        File explorer
   --===========================================================================
-  { "nvim-tree/nvim-tree.lua", dependencies = "nvim-tree/nvim-web-devicons" },
+  { "nvim-tree/nvim-tree.lua", dependencies = "nvim-tree/nvim-web-devicons",
+    config = function(plugin)
+      require("plugins.nvim_tree")
+      vim.notify("Loaded " .. plugin.name, INFO)
+    end },
 
   "junegunn/vim-emoji", -- Emoji in vim
   "onsails/lspkind-nvim", -- VSCode-like pictograms

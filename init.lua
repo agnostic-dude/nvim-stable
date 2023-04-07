@@ -10,16 +10,6 @@ require("user.autocommands")
 require("user.plugins")
 require("user.viml")
 
-require("plugins.nvim_tree")
-require("plugins.treesitter")
-require("plugins.indentblankline")
-require("plugins.toggleterm")
-require("plugins.gitsigns")
-require("plugins.colorizer")
-require("plugins.telescope")
-require("plugins.devicons")
-require("plugins.lualine")
-
 -- Setup all LSP related plugins by sourcing lua/plugins/lsp/init.lua
 require("plugins.lsp")
 
