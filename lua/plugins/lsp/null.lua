@@ -1,8 +1,8 @@
 -- null-ls.nvim config
 local null_ls_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_ok then
-  vim.notify("Needs to install null-ls", vim.log.levels.WARN)
-  return
+    vim.notify("Needs to install null-ls", vim.log.levels.WARN)
+    return
 end
 
 local formatting = null_ls.builtins.formatting
@@ -17,36 +17,30 @@ local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
             insertFinalNewline = true,
             trimFinalNewlines = true,
           },
-null_ls.setup({
-  autostart = true,
-  debug = true,
   sources = {
     -- Python
-    formatting.black.with({
-      max_line_length = "80",
-    }),
+    formatting.black.with({max_line_length = "80"}),
     formatting.isort,
     diagnostics.pylint, -- +simple refactoring
 
     -- Javascript
     formatting.prettierd.with({
-      disabled_filetypes = { "html" } -- reserve HTML formatting for tidy
+        disabled_filetypes = {"html"} -- reserve HTML formatting for tidy
     }),
 
     -- HTML/XML
-    formatting.tidy.with({
-      extra_args = { "-wrap", "80", "-indent", "auto" },
-    }),
+    formatting.tidy.with({extra_args = {"-wrap", "80", "-indent", "auto"}}),
 
     -- Rust
     formatting.rustfmt,
 
     -- Go
-    formatting.gofmt,
-    diagnostics.golangci_lint.with({
-      args = { "run", "--fix=false", "--out-format=json", "$DIRNAME",
-        "--path-prefix", "$ROOT" },
-      extra_args = { "-c", vim.fn.getenv("GOPATH") .. "/utils/.golangci.yml" },
+    formatting.gofmt, diagnostics.golangci_lint.with({
+        args = {
+            "run", "--fix=false", "--out-format=json", "$DIRNAME",
+            "--path-prefix", "$ROOT"
+        },
+        extra_args = {"-c", vim.fn.getenv("GOPATH") .. "/utils/.golangci.yml"}
     }),
 
     -- Lua
@@ -55,19 +49,19 @@ null_ls.setup({
 
     -- TODO: error: lua-format is not executable (lua_ls can format now!)
     -- formatting.lua_format.with({
-    --   extra_args = {
-    --     "--no-keep-simple-function-one-line",
-    --     "--no-break-after-operator",
-    --     "--column-list=100",
-    --     "--break-after-table-lb",
-    --     "--indent-width=8",
-    --   },
+    --     extra_args = {
+    --         -- "--indent-width=8",
+    --         "--no-keep-simple-function-one-line", "--no-break-after-operator",
+    --         "--column-limit=80", "--break-after-table-lb",
+    --         "--single-quote-to-double-quote", "--chop-down-parameter",
+    --         "--continuation-indent-width=2"
+    --     }
     -- }),
 
     -- Shell
     formatting.shfmt,
     formatting.beautysh,
-    diagnostics.shellcheck.with({ diagnostics_format = "#{m} [#{c}]" }),
+    diagnostics.shellcheck.with({diagnostics_format = "#{m} [#{c}]"}),
     code_actions.shellcheck,
 
     -- Refactoring library based on book by Martin Fowler
@@ -80,12 +74,10 @@ null_ls.setup({
     -- Fix common misspellings
     formatting.codespell,
 
-    -- trim newlines (simple wrapper around awk)
+    -- trim newlines & whitespace (simple wrapper around awk)
     formatting.trim_newlines,
-
-    -- trim trailing whitespace (simple wrapper around awk)
     formatting.trim_whitespace,
-  },
+}
 
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -105,4 +97,10 @@ null_ls.setup({
       })
     end
   end,
+
+null_ls.setup({
+    autostart = true,
+    debug = true,
+    sources = sources,
+    on_attach = on_attach
 })
