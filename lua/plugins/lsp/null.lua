@@ -10,6 +10,13 @@ local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
 
+          formatting_options = {
+            tabSize = 4,
+            insertSpaces = true,
+            trimTrailingWhitespace = true,
+            insertFinalNewline = true,
+            trimFinalNewlines = true,
+          },
 null_ls.setup({
   autostart = true,
   debug = true,
