@@ -77,11 +77,11 @@ if cmp_nvim_lsp_ok then
   -- extend default capabilities
   cmp_nvim_lsp.default_capabilities(capabilities)
 else
-  vim.notify("Needs cmp_nvim_lsp", vim.log.levels.ERROR)
+  vim.notify("Needs cmp_nvim_lsp", WARN)
 end
 capabilities.offsetEncoding = { "utf-16" } -- clangd uses utf-8 by default
 
-if mason ~= nil then
+if mason then
   mason.setup()
   mason.lspconfig.setup({
     ensure_installed = vim.tbl_keys(servers)
@@ -104,10 +104,10 @@ if mason ~= nil then
       end,
     })
   else
-    vim.notify("Need to install lspconfig", vim.log.levels.ERROR)
+    vim.notify("Need to install lspconfig", WARN)
   end
 else
-  vim.notify("Need to install mason", vim.log.levels.ERROR)
+  vim.notify("Need to install mason", WARN)
 end
 
 -- Setup completion engine

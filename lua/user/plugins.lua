@@ -215,6 +215,6 @@ return require("lazy").setup({
     lockfile = vim.fn.stdpath("config") .. "/.lazy-lock.json",
     install = {
       -- try one of these themes when starting an installation during startup
-      colorscheme = { "moonbow", "jellybeans-nvim", "habamax" },
+      colorscheme = { "moonbow", "moonfly", "habamax" },
     }
   })

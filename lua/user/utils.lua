@@ -56,8 +56,24 @@ function _G.CmpTables(t1, t2)
   return true
 end
 
+-- TODO: Bind custom notification function with async support if available as
+-- vim.notify
 -- If nvim-notify plugin is available use it to show notifications
-local has_notify, notify = pcall(require, "notify")
-if has_notify then
-  vim.notify = notify
+function _G.notify(notification, log_level)
+  local has_async, async = pcall(require, "plenary.async")
+  local has_notify, notify = pcall(require, "notify")
+
+  if has_notify then
+    if has_async then
+      vim.notify = notify.async
+    else
+      vim.notify = notify
+    end
+  end
 end
+
+-- alias used log levels for convenience
+_G.ERROR = vim.log.levels.ERROR
+_G.WARN = vim.log.levels.WARN
+_G.INFO = vim.log.levels.INFO
+_G.DEBUG = vim.log.levels.DEBUG
