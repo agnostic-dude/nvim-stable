@@ -109,9 +109,7 @@ return require("lazy").setup({
       end
     end,
   },
-  { "folke/tokyonight.nvim", lazy = false }, -- Ported from TokyoNight of VSCode
   { "arturgoms/moonbow.nvim", lazy = false }, -- inspired by gruvbox & ayu dark
-  { "rebelot/kanagawa.nvim", lazy = false }, -- dark theme inspired by Katsushika Hokusai painting
   "bluz71/vim-moonfly-colors", -- dark charcoal theme
 
   --===========================================================================
