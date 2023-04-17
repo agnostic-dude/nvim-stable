@@ -40,6 +40,7 @@ Nnoremap("<Leader>ff", builtin.find_files, { desc = "[f]ind [f]ile" })
 Nnoremap("<Leader>fb", builtin.buffers, { desc = "[f]ind [b]buffers" })
 Nnoremap("<Leader>fh", builtin.help_tags, { desc = "[f]ind [h]elp tags" })
 Nnoremap("<Leader>fd", builtin.diagnostics, { desc = "[f]ind [d]iagnostic msgs" })
+Nnoremap("<Leader>fc", builtin.colorscheme, { desc = "[f]ind [c]olorscheme" })
 
 -- Lazygit
 local lazygit = require("plugins.lazygit")
