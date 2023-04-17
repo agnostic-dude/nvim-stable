@@ -109,7 +109,7 @@ return require("lazy").setup({
       end
     end,
   },
-  { "arturgoms/moonbow.nvim", lazy = false }, -- inspired by gruvbox & ayu dark
+  "arturgoms/moonbow.nvim", -- inspired by gruvbox & ayu dark
   "bluz71/vim-moonfly-colors", -- dark charcoal theme
 
   --===========================================================================
