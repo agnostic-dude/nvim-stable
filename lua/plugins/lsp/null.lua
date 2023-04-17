@@ -10,14 +10,8 @@ local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
 
-          formatting_options = {
-            tabSize = 4,
-            insertSpaces = true,
-            trimTrailingWhitespace = true,
-            insertFinalNewline = true,
-            trimFinalNewlines = true,
-          },
-  sources = {
+local sources = {
+
     -- Python
     formatting.black.with({max_line_length = "80"}),
     formatting.isort,
@@ -44,10 +38,7 @@ local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
     }),
 
     -- Lua
-    -- Stylua needs a project based stylua.toml or .stylua.toml
-    -- formatting.stylua,
-
-    -- TODO: error: lua-format is not executable (lua_ls can format now!)
+    -- lua-format is shite! (lua_ls can format now!)
     -- formatting.lua_format.with({
     --     extra_args = {
     --         -- "--indent-width=8",
@@ -79,24 +70,27 @@ local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
     formatting.trim_whitespace,
 }
 
-  on_attach = function(client, bufnr)
+local on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = lsp_formatting, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = lsp_formatting,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({
-            bufnr = bufnr,
-            -- filter available formatters so that only null-ls receives request
-            filter = function()
-              return client.name ~= "lua_ls" and client.name == "null-ls"
+        vim.api.nvim_clear_autocmds({group = lsp_formatting, buffer = bufnr})
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = lsp_formatting,
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format({
+                    bufnr = bufnr,
+                    format_options = {
+                      insertFinalNewline = true,
+                    },
+                    -- filter available formatters so that only null-ls receives request
+                    filter = function(lspclient)
+                        return lspclient.name ~= "lua_ls" or lspclient.name == "null-ls"
+                    end
+                })
             end
-          })
-        end,
-      })
+        })
     end
-  end,
+end
 
 null_ls.setup({
     autostart = true,
