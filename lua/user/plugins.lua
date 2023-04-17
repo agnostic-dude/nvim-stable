@@ -24,7 +24,7 @@ return require("lazy").setup({
   --                            Utilities
   --===========================================================================
   -- configurable notification manager
-  { "rcarriga/nvim-notify", lazy = true,
+  { "rcarriga/nvim-notify",
     config = function()
       vim.notify = require("notify")
     end },
