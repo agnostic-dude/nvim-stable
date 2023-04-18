@@ -23,3 +23,11 @@ colorArg: never
 pager: delta --dark --paging=never
 
 ```
+# Related system-wide configurations
+# To enable mapping of capslock to escape ~/.xprofile has following
+# Read comments on ~/.config/nvim/lua/user/keymaps.lua
+# If all this does not work source ~/.xprofile!
+```
+setxkbmap -option caps:escape_shifted_capslock
+
+```
