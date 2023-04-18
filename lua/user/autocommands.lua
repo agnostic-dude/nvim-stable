@@ -86,6 +86,7 @@ create_autocmd("BufNewFile", {
 -- But this table is only visible after "packer_compiled.lua" is loaded, which
 -- it turns out is AFTER user config (init.lua) is sourced, BUT before VimEnter
 -- autocommands are executed. Therefore, this will not work in a config file.
+-- UPDATE: using lazy.nvim instead of packer.nvim as plugin manager
 create_autocmd("VimEnter", {
     desc = "Register auto-pairs Fly Mode to activate",
     pattern = "*",
