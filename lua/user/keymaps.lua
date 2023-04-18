@@ -6,27 +6,27 @@
 -------------------------------------------------------------------------------
 --                  Mapping ESCAPE key to CAPSLOCK
 -------------------------------------------------------------------------------
--- Map <Escape> key to <CapsLock> for easy typing (using xmodmap)
--- CAUTION: If >= 2 buffers are open, exiting from one buffer alone undoes this
--- mapping. You also will not have the use of Caps-Lock key!
+-- Update: Escape <=> CapsLock mapping using xmodmap no longer works!
 --
--- Entering any neovim buffer: CapsLock Key ==> Escape Function
-local remap_capslock = vim.api.nvim_create_augroup("RemapCapsLock", { clear = true })
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  pattern = "*",
-  command = "silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'",
-  desc = "map CapsLock to Esc on entry",
-  group = remap_capslock,
-})
-
--- Exiting any neovim buffer: CapsLock Key ==> CapsLock Function
-vim.api.nvim_create_autocmd("VimLeave", {
-  pattern = "*",
-  command = "silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'",
-  desc = "restore CapsLock on exit",
-  group = remap_capslock,
-})
+-- Used to map <Escape> key to <CapsLock> for easy typing using `xmodmap` tool.
+-- We need to register 2 autocommands that execute xmodmap on
+-- 1. VimEnter to map CapsLock to Escape, and
+-- 2. VimLeave to clear the mapping.
+--
+-- But since nvim-0.9, VimLeave gives SIGABRT error (code 134) on exiting.
+-- This seems to be related to uv_dlsym (of libuv).
+-- Therefore I am using `setxkbmap` command instead, to remap the keyboard on
+-- startup by placing it on ~/.xprofile to be sourced by the display manager,
+-- LightDM in my case.  (It is also sourced by display managers GDM, LXDM, SDDM;
+-- and by xinit, startx, XDM or any that uses ~/.xsession or ~/.xinitrc)
+-- ( source: https://wiki.archlinux.org/title/Xprofile )
+--
+-- This preserves Escape key function, makes CapsLock act like Escape when
+-- pressed alone, restores CapsLock function with Shift + CapsLock.
+--
+-- This no longer works.
+--   silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+--   silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
 
 -- Setup global LEADER key
 vim.g.mapleader = ";"
