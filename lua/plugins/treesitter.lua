@@ -8,7 +8,7 @@ vim.o.foldenable = false -- enable to fold on opening
 
 require("nvim-treesitter.configs").setup({
   -- Installed parsers: "all" or a list
-  ensure_installed = { "lua", "python", "c", "rust", "go" },
+  ensure_installed = { "lua", "python", "c", "rust", "go", "vimdoc" },
 
   -- Install parsers synchronously
   sync_install = true,
