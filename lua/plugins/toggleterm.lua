@@ -36,7 +36,7 @@ require("toggleterm").setup {
       return vim.fn.round(vim.o.columns * 0.9)
     end,
     height = function()
-      return vim.fn.round(vim.o.lines * 0.95)
+      return vim.fn.round(vim.o.lines * 0.9)
     end,
     winblend = 3,
     border = "double", -- single | double | shadow | curved (like nvim_open_win)
