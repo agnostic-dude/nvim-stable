@@ -18,7 +18,7 @@ if lazygit_ok then
   })
   M = lazygit
 else
-  vim.notify("Need to install lazygit.nvim")
+  vim.notify("Need to install lazygit.nvim", WARN, { title="lazygit-config" })
 end
 
 return M

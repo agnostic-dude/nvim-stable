@@ -76,7 +76,7 @@ cmp.setup({
         luasnip.jump(1)
       else
         fallback()
-        vim.notify("Cannot jump to next placeholder")
+        vim.notify("Cannot jump to next placeholder", { title="nvim-cmp-config" })
       end
     end, { "i", "s" }),
 
@@ -86,7 +86,7 @@ cmp.setup({
         luasnip.jump(-1)
       else
         fallback()
-        vim.notify("Cannot jump to previous placeholder")
+        vim.notify("Cannot jump to previous placeholder", { title="nvim-cmp-config" })
       end
     end, { "i", "s" }),
 

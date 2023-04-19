@@ -4,9 +4,11 @@ local utils = require("plugins.lsp.utils")
 local nmap = utils.Nmap
 local imap = utils.Imap
 
-local function map_keys(client, bufnr)
-  vim.notify("Registering keymaps for " .. client.name
-    .. " for buffer " .. bufnr)
+-- Make keymappings for given LSP server for given buffer
+local function map_keys(server, bufnr)
+
+  vim.notify("Registering keymaps for " .. server.name
+    .. " for buffer " .. bufnr, INFO, { title="nvim-keymaps-config" })
 
   -- Hover: K
   nmap("K", vim.lsp.buf.hover, bufnr, "Hover Documentation")

@@ -33,7 +33,7 @@ return require("lazy").setup({
   { "norcalli/nvim-colorizer.lua",
     config = function(plugin)
       require("plugins.colorizer")
-      vim.notify("Loaded " .. plugin.name, INFO)
+      vim.notify("Loaded " .. plugin.name, INFO, { title="nvim-plugins-config" })
     end },
 
   "tpope/vim-commentary", -- comment/uncomment with gcc/gc
@@ -43,7 +43,7 @@ return require("lazy").setup({
   { "lukas-reineke/indent-blankline.nvim",
     config = function(plugin)
       require("plugins.indentblankline")
-      vim.notify("Loaded " .. plugin.name, INFO)
+      vim.notify("Loaded " .. plugin.name, INFO, { title="nvim-plugins-config" })
     end },
 
   "RRethy/vim-illuminate", -- smart highlighting of words under cursor
@@ -56,21 +56,21 @@ return require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function(plugin)
       require("plugins.lualine")
-      vim.notify("Loaded " .. plugin.name, INFO)
+      vim.notify("Loaded " .. plugin.name, INFO, { title="nvim-plugins-config" })
     end },
 
   -- Git integration for buffers
   { "lewis6991/gitsigns.nvim", dependencies = "nvim-lua/plenary.nvim",
     config = function(plugin)
       require("plugins.gitsigns")
-      vim.notify("Loaded " .. plugin.name, INFO)
+      vim.notify("Loaded " .. plugin.name, INFO, { title="nvim-plugins-config" })
     end },
 
   -- Floating terminal
   { "akinsho/toggleterm.nvim", -- * avoids breaking changes
     config = function(plugin)
       require("plugins.toggleterm")
-      vim.notify("Loaded " .. plugin.name, INFO)
+      vim.notify("Loaded " .. plugin.name, INFO, { title="nvim-plugins-config" })
     end },
 
   --===========================================================================
@@ -83,7 +83,7 @@ return require("lazy").setup({
     end,
     config = function(plugin)
       require("plugins.treesitter")
-      vim.notify("Loaded " .. plugin.name, INFO)
+      vim.notify("Loaded " .. plugin.name, INFO, { title="nvim-plugins-config" })
     end
   },
   "p00f/nvim-ts-rainbow", -- color matched parenthesis with treesitter
@@ -174,7 +174,7 @@ return require("lazy").setup({
     },
     config = function(plugin)
       require("plugins.telescope")
-      vim.notify("Loaded " .. plugin.name, INFO)
+      vim.notify("Loaded " .. plugin.name, INFO, { title="nvim-plugins-config" })
     end
   },
   "nvim-telescope/telescope-dap.nvim", -- telescope support for DAP
@@ -199,7 +199,7 @@ return require("lazy").setup({
   { "nvim-tree/nvim-tree.lua", dependencies = "nvim-tree/nvim-web-devicons",
     config = function(plugin)
       require("plugins.nvim_tree")
-      vim.notify("Loaded " .. plugin.name, INFO)
+      vim.notify("Loaded " .. plugin.name, INFO, { title = "nvim-plugins-config" })
     end },
 
   "junegunn/vim-emoji", -- Emoji in vim

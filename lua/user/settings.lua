@@ -45,5 +45,5 @@ vim.cmd([[filetype plugin indent on]])
 if vim.fn.has("termguicolors") then
   vim.o.termguicolors = true
 else
-  vim.notify("Terminal does not have GUI colors", vim.log.levels.WARN)
+  vim.notify("Terminal does not have GUI colors", vim.log.levels.WARN, { title="nvim-settings-config" })
 end

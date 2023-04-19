@@ -1,7 +1,7 @@
 -- null-ls.nvim config
 local null_ls_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_ok then
-    vim.notify("Needs to install null-ls", vim.log.levels.WARN)
+    vim.notify("Needs to install null-ls", WARN, { title="null_ls-config" })
     return
 end
 

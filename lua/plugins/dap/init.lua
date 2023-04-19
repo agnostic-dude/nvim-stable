@@ -7,19 +7,27 @@ Nnoremap("<M-b>", dap.toggle_breakpoint) -- toggle BREAKPOINT
 
 Nnoremap("<M-c>", function() -- CONTINUE
   dap.continue()
-  vim.notify("continuing to next breakpoint", vim.log.levels.INFO)
+  vim.notify("continuing to next breakpoint", vim.log.levels.INFO, {
+    title = "nvim-dap-config"
+  })
 end)
 Nnoremap("<F2>", function() -- STEP OVER
   dap.step_over()
-  vim.notify("stepping over", vim.log.levels.INFO)
+  vim.notify("stepping over", vim.log.levels.INFO, {
+    title = "nvim-dap-config"
+  })
 end)
 Nnoremap("<F3>", function() -- STEP INTO
   dap.step_into()
-  vim.notify("stepping into", vim.log.levels.INFO)
+  vim.notify("stepping into", vim.log.levels.INFO, {
+    title = "nvim-dap-config"
+  })
 end)
 Nnoremap("<F4>", function() -- STEP OUT
   dap.step_out()
-  vim.notify("stepping out", vim.log.levels.INFO)
+  vim.notify("stepping out", vim.log.levels.INFO, {
+    title = "nvim-dap-config"
+  })
 end)
 -- Launch lua debugger
 Nnoremap("<Leader>dL", function() require("osv").launch({ port = 8086 }) end)
@@ -33,7 +41,9 @@ if dapui_ok then
   Nnoremap("<Leader>dc", dapui.close)
   Nnoremap("<Leader>dt", dapui.toggle)
 else
-  vim.notify("Need to install nvim-dap-ui")
+  vim.notify("Need to install nvim-dap-ui", {
+    title = "nvim-dap-config"
+  })
 end
 
 -- use nvim-dap events to open and close windows automatically
