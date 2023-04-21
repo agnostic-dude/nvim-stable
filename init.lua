@@ -5,7 +5,7 @@
 
 require("user.settings")
 require("user.utils")
-require("user.keymaps")
+require("user.keymap")
 require("user.autocommands")
 require("user.plugins")
 require("user.viml")
