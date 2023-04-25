@@ -6,7 +6,8 @@
 -- the loading is important
 local telescope_ok, telescope = pcall(require, "telescope")
 if not telescope_ok then
-  vim.notify("Need to install telescope.nvim", vim.log.levels.ERROR, { title="telescope-config" })
+  vim.notify("telescope.nvim is not installed", ERROR,
+    { title = "Telescope Configuration" })
   return
 end
 

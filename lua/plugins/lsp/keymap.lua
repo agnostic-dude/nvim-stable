@@ -14,8 +14,8 @@ local function set_keymap(client, bufnr)
     vim.keymap.set(mode, keys, func, opts)
   end
 
-  vim.notify("Registering keymaps for " .. client.name
-    .. " for buffer " .. bufnr, INFO, { title = "Lspconfig-keymaps" })
+  vim.notify("registering keymaps for " .. client.name
+    .. " for buffer " .. bufnr, INFO, { title = "Lspconfig" })
 
   -- from nvim-lspconfig home page
   vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"

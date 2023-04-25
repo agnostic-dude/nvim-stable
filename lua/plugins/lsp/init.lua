@@ -36,7 +36,7 @@ if lspconfig_ok then
     end
   end
 else
-  vim.notify("lspconfig not installed!", ERROR, { title = "Lspconfig" })
+  vim.notify("lspconfig not installed", ERROR, { title = "Lspconfig" })
   return 1
 end
 

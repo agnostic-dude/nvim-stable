@@ -13,7 +13,8 @@ if cmp_nvim_ok then
   capabilities = vim.tbl_deep_extend("force",
     capabilities, cmp_nvim_lsp.default_capabilities())
 else
-  vim.notify("cmp_nvim_lsp was not found", WARN, { title = "Lspconfig" })
+  vim.notify("cmp-nvim-lsp is not installed", WARN,
+    { title = "LSP Client Sources" })
 end
 
 capabilities.offsetEncoding = { "utf-16" } -- clangd uses utf-8 by default

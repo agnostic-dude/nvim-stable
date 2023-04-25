@@ -76,20 +76,20 @@ cmp.setup({
         luasnip.jump(1)
       else
         fallback()
-        vim.notify("Cannot jump to next placeholder", { title="nvim-cmp-config" })
+        vim.notify("cannot jump to next placeholder", WARN,
+          { title = "Auto Completions" })
       end
     end, { "i", "s" }),
-
     -- Jump to previous PLACEHOLDER in the snippet
     ["<C-k>"] = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
-        vim.notify("Cannot jump to previous placeholder", { title="nvim-cmp-config" })
+        vim.notify("cannot jump to previous placeholder", WARN,
+          { title = "Auto Completions" })
       end
     end, { "i", "s" }),
-
     -- Autocomplete with TABS
     -- If completion menu is visible, move to next item. If line is empty insert
     -- a TAB character. If cursor is inside a word, trigger the completion menu.
@@ -104,7 +104,6 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -115,7 +114,6 @@ cmp.setup({
       end
     end, { "i", "s" }),
   },
-
   -- NOTE: New from nvim-cmp https://github.com/hrsh7th/nvim-cmp/issues/231
   -- Instead of expreimental.native_menu = true, following is added
   view = { entries = "new" },
