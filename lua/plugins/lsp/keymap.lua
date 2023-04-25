@@ -2,7 +2,6 @@
 -- Set keymappings for language servers
 -------------------------------------------------------------------------------
 
-
 -- Make keymappings for given LSP server for given buffer
 local function set_keymappings(client, bufnr)
   -- LSP keymappings

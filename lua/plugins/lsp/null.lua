@@ -9,9 +9,8 @@ end
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
-local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
 
-local sources = {
+local null_sources = {
 
   -- Python
   formatting.black.with({ max_line_length = "80" }),
@@ -71,31 +70,11 @@ local sources = {
   formatting.trim_whitespace,
 }
 
-local on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_clear_autocmds({group = lsp_formatting, buffer = bufnr})
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            group = lsp_formatting,
-            buffer = bufnr,
-            callback = function()
-                vim.lsp.buf.format({
-                    bufnr = bufnr,
-                    format_options = {
-                      insertFinalNewline = true,
-                    },
-                    -- filter available formatters so that only null-ls receives request
-                    filter = function(lspclient)
-                        return lspclient.name ~= "lua_ls" or lspclient.name == "null-ls"
-                    end
-                })
-            end
-        })
-    end
-end
+local lspconfig = require("plugins.lsp.config")
 
 null_ls.setup({
     autostart = true,
     debug = true,
     sources = sources,
-    on_attach = on_attach
+  on_attach = lspconfig.on_attach
 })
