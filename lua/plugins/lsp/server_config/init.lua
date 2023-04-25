@@ -4,6 +4,10 @@
 -- This dir contains config files for all installed servers. Server configs are
 -- grouped according to the language.  This file sources all of them and creates
 -- a table of server:configuration mappings.
+-- NOTE: Code will break if/when you change the name of parent directory or any
+-- of the its parents, because we use the path of parent dir here.  It cannot be
+-- obtained at runtime!!!
+
 local server_configs = {}
 local parent_dir = vim.fn.stdpath("config") .. "/lua/plugins/lsp/server_config"
 local configs = vim.fn.globpath(parent_dir, "*.lua", false, true)
