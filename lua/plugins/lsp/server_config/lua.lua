@@ -29,8 +29,8 @@ if vim.fn.executable("lua-language-server") then
           maxPreload = 2000,
           preloadFileSize = 50000,
         },
-        -- telemetry = { enable =false },
-        -- callSnippet = "Replace",
+        telemetry = { enable = false },
+        callSnippet = "Replace",
       },
     },
   }
