@@ -73,15 +73,6 @@ local function set_keymappings(client, bufnr)
     { desc = "goto [d]iagnostic [n]ext" })
 
   -- Set some key bindings conditional on server capabilities
-  -------------------------------------------------------------------------------
-  -- Format selected portion or whole of it: ;ff
-  -- NOTE: until format-on-save works for lua
-  -- If language server can format buffer...
-  if client.server_capabilities.documentFormattingProvider then
-    map("<Leader>%", vim.lsp.buf.format,
-      { desc = "format buffer", async = true })
-  end
 end
-
 
 return set_keymappings
