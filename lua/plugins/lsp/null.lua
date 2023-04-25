@@ -37,17 +37,9 @@ local null_sources = {
   extra_args = { "-c", vim.fn.getenv("GOPATH") .. "/utils/.golangci.yml" }
 }),
 
-    -- Lua
-    -- lua-format is shite! (lua_ls can format now!)
-    -- formatting.lua_format.with({
-    --     extra_args = {
-    --         -- "--indent-width=8",
-    --         "--no-keep-simple-function-one-line", "--no-break-after-operator",
-    --         "--column-limit=80", "--break-after-table-lb",
-    --         "--single-quote-to-double-quote", "--chop-down-parameter",
-    --         "--continuation-indent-width=2"
-    --     }
-    -- }),
+  -- Lua
+  -- lua-format is shite, stylua needs project based config files!
+  -- (PLUS lua_ls can format now!, let's use that)
 
   -- Shell
   formatting.shfmt,
@@ -73,8 +65,8 @@ local null_sources = {
 local lspconfig = require("plugins.lsp.config")
 
 null_ls.setup({
-    autostart = true,
-    debug = true,
-    sources = sources,
+  autostart = true,
+  debug = true,
+  sources = null_sources,
   on_attach = lspconfig.on_attach
 })
