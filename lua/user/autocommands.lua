@@ -3,23 +3,25 @@
 -- Lua configuration: autocommands
 --==============================================================================
 
+local opts = { clear = true }
+
 -------------------------------------------------------------------------------
 --                        LINE NUMBERS
 -------------------------------------------------------------------------------
 -- Toggle/untoggle relative/absolute line numbers depending on active/inactive
 -- state of the buffers.
-local numbertoggle = create_augroup("NumberToggle", { clear = true })
+local toggle_line_numbers = create_augroup("NumberToggle", opts)
 
 -- relative line numbers in active buffer
 create_autocmd(
-    { "BufEnter", "FocusGained", "InsertLeave" },
-    { pattern = "*", command = "set relativenumber", group = numbertoggle }
+  { "BufEnter", "FocusGained", "InsertLeave" },
+  { pattern = "*", command = "set relativenumber", group = toggle_line_numbers }
 )
 
 -- absolute line numbers in inactive buffer
 create_autocmd(
-    { "BufLeave", "FocusLost", "InsertEnter" },
-    { pattern = "*", command = "set norelativenumber", group = numbertoggle }
+  { "BufLeave", "FocusLost", "InsertEnter" },
+  { pattern = "*", command = "set norelativenumber", group = toggle_line_numbers }
 )
 
 -------------------------------------------------------------------------------
