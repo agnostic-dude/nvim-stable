@@ -28,10 +28,34 @@ local function on_attach(client, bufnr)
   -- setup keymappings
   set_keymappings(client, bufnr)
 
-  -- vim.api.nvim_buf_create_user_command(bufnr,
-  --   "Format", vim.lsp.buf.format,
-  --   { desc = "Format current buffer with LSP" }
-  -- )
+  if client.server_capabilities.documentFormattingProvider then
+    local format_on_save = vim.api.nvim_create_augroup("FormatOnSave",
+      { clear = true })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = format_on_save,
+      buffer = bufnr,
+      callback = function(ev)
+        vim.lsp.buf.format({
+          async = false, -- ISSUE: if TRUE, async writing never saves the file!
+          bufnr = ev.buf,
+          format_options = { insertFinalNewline = true },
+          -- filter = function(lspclient)
+          -- NOTE: can we use a table to store client.id, and exclude null-ls
+          -- if client.id is already registered with lua_ls?
+          --   if lspclient.name == "lua_ls" then
+          --     return true
+          --   else
+          --     return lspclient.name == "null-ls"
+          --   end
+          -- end,
+        })
+      end,
+      desc = client.name .. " format buffer " .. bufnr,
+    })
+  else
+    vim.notify(client.name .. " cannot format documents", WARN,
+      { title = "Lspconfig" })
+  end
 end
 
 
