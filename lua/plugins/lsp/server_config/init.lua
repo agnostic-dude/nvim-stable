@@ -7,6 +7,13 @@
 local server_configs = {}
 local parent_dir = vim.fn.stdpath("config") .. "/lua/plugins/lsp/server_config"
 local configs = vim.fn.globpath(parent_dir, "*.lua", false, true)
+
+if vim.tbl_isempty(configs) then
+  vim.notify("could not find server configuration files!", ERROR,
+    { title = "Server Configuration" })
+  return 1
+end
+
 local modules = vim.tbl_map(
   function(o) return vim.fn.fnamemodify(o, ":t:r") end,
   configs
