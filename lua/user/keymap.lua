@@ -66,7 +66,7 @@ Inoremap("<C-l>", "<Esc>viwUea") -- Captalize previous WORD
 -- -- Map ":" in NORMAL mode to open a command-line window ready for work
 -- nnoremap(":", "q:i")
 Nnoremap("<C-c>", "<cmd>tabclose<cr>")
-Nnoremap("gn", "<cmd>tabnext<cr>") -- by default "gT"
+Nnoremap("gn", "<cmd>tabnext<cr>")     -- by default "gT"
 Nnoremap("gp", "<cmd>tabprevious<cr>") -- by default "gT"
 
 -- Go up/down the page, keeping cursor in the middle of the screen
@@ -89,3 +89,4 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", opts)
 
 -- Toggle/untoggle distraction-free writing with goyo.vim
 Nnoremap("<Leader>gy", "<cmd>Goyo<cr>")
+Nnoremap("<Leader>so", "<cmd>source %<cr>")
