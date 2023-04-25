@@ -14,7 +14,7 @@ if vim.fn.executable("lua-language-server") then
           -- path = vim.o.runtimepath,
         },
         diagnostics = {
-          globals = { "vim" },-- Get LSP server to recognize the `vim` global
+          globals = { "vim" }, -- Get LSP server to recognize the `vim` global
         },
         workspace = {
           -- Make the server aware of Neovim runtime files,

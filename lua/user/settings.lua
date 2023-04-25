@@ -8,30 +8,22 @@ local options = {
   expandtab = true,
   softtabstop = 4,
   shiftwidth = 4, -- indentation
-
   cindent = true,
   breakindent = true,
-
-  textwidth = 80, -- max line length
+  textwidth = 80,      -- max line length
   signcolumn = "auto", -- hide signcolumn if there is nothing to show
-  colorcolumn = "+0", -- highlight last legal column
-
-  number = true, -- show line numbers
-
+  colorcolumn = "+0",  -- highlight last legal column
+  number = true,       -- show line numbers
   -- search settings
   ignorecase = true,
   smartcase = true,
-
   undofile = true,
-
   -- Graphical
   mouse = "a",
-  digraph = false, -- disabled to prevent non-ASCII chars on command line
+  digraph = false,   -- disabled to prevent non-ASCII chars on command line
   cursorline = true, -- highlight the line cursor is on
-
   splitright = true,
   splitbelow = true,
-
   dictionary = "/usr/share/dict/allwords.txt"
 }
 

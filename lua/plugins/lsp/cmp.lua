@@ -33,10 +33,11 @@ cmp.setup({
     { name = "nvim_lua" }, -- source only enables itself inside of lua buffers
     { name = "path" },
     { name = "nvim_lsp", keyword_length = 3 },
-    { name = "buffer", keyword_length = 5 },
-    { name = "luasnip", keyword_length = 2 },
+    { name = "buffer",   keyword_length = 5 },
+    { name = "luasnip",  keyword_length = 2 },
   }),
-  window = { -- NOTE: Author will merge this to `view` in the future
+  window = {
+    -- NOTE: Author will merge this to `view` in the future
     documentation = cmp.config.window.bordered(),
     completion = cmp.config.window.bordered(),
   },
@@ -64,7 +65,6 @@ cmp.setup({
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.abort(),
-
     -- NOTE: New from nvim-cmp https://github.com/hrsh7th/nvim-cmp/issues/231
     -- ["<C-x><C-s>"] = cmp.mapping.complete({
     --   config = { sources = { name = "luasnip" } }

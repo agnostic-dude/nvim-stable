@@ -12,30 +12,30 @@ local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local sources = {
 
-    -- Python
-    formatting.black.with({max_line_length = "80"}),
-    formatting.isort,
-    diagnostics.pylint, -- +simple refactoring
+  -- Python
+  formatting.black.with({ max_line_length = "80" }),
+  formatting.isort,
+  diagnostics.pylint, -- +simple refactoring
 
-    -- Javascript
-    formatting.prettierd.with({
-        disabled_filetypes = {"html"} -- reserve HTML formatting for tidy
-    }),
+  -- Javascript
+  formatting.prettierd.with({
+    disabled_filetypes = { "html" } -- reserve HTML formatting for tidy
+  }),
 
-    -- HTML/XML
-    formatting.tidy.with({extra_args = {"-wrap", "80", "-indent", "auto"}}),
+  -- HTML/XML
+  formatting.tidy.with({ extra_args = { "-wrap", "80", "-indent", "auto" } }),
 
-    -- Rust
-    formatting.rustfmt,
+  -- Rust
+  formatting.rustfmt,
 
-    -- Go
-    formatting.gofmt, diagnostics.golangci_lint.with({
-        args = {
-            "run", "--fix=false", "--out-format=json", "$DIRNAME",
-            "--path-prefix", "$ROOT"
-        },
-        extra_args = {"-c", vim.fn.getenv("GOPATH") .. "/utils/.golangci.yml"}
-    }),
+  -- Go
+  formatting.gofmt, diagnostics.golangci_lint.with({
+  args = {
+    "run", "--fix=false", "--out-format=json", "$DIRNAME",
+    "--path-prefix", "$ROOT"
+  },
+  extra_args = { "-c", vim.fn.getenv("GOPATH") .. "/utils/.golangci.yml" }
+}),
 
     -- Lua
     -- lua-format is shite! (lua_ls can format now!)
@@ -49,25 +49,25 @@ local sources = {
     --     }
     -- }),
 
-    -- Shell
-    formatting.shfmt,
-    formatting.beautysh,
-    diagnostics.shellcheck.with({diagnostics_format = "#{m} [#{c}]"}),
-    code_actions.shellcheck,
+  -- Shell
+  formatting.shfmt,
+  formatting.beautysh,
+  diagnostics.shellcheck.with({ diagnostics_format = "#{m} [#{c}]" }),
+  code_actions.shellcheck,
 
-    -- Refactoring library based on book by Martin Fowler
-    -- using thePrimeagen/refactoring.nvim plugin
-    code_actions.refactoring,
+  -- Refactoring library based on book by Martin Fowler
+  -- using thePrimeagen/refactoring.nvim plugin
+  code_actions.refactoring,
 
-    -- Git
-    code_actions.gitsigns, -- provide code actions from GitSigns
+  -- Git
+  code_actions.gitsigns, -- provide code actions from GitSigns
 
-    -- Fix common misspellings
-    formatting.codespell,
+  -- Fix common misspellings
+  formatting.codespell,
 
-    -- trim newlines & whitespace (simple wrapper around awk)
-    formatting.trim_newlines,
-    formatting.trim_whitespace,
+  -- trim newlines & whitespace (simple wrapper around awk)
+  formatting.trim_newlines,
+  formatting.trim_whitespace,
 }
 
 local on_attach = function(client, bufnr)

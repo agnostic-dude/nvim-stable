@@ -31,9 +31,9 @@ if lspconfig_ok then
       end
     })
   else
-  for server, config in pairs(server_configs) do
-    lspconfig[server].setup(vim.tbl_extend("error", config, user_config))
-  end
+    for server, config in pairs(server_configs) do
+      lspconfig[server].setup(vim.tbl_extend("error", config, user_config))
+    end
   end
 else
   vim.notify("lspconfig not installed!", ERROR, { title = "Lspconfig" })

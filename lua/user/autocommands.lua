@@ -27,27 +27,27 @@ create_autocmd(
 -------------------------------------------------------------------------------
 -- Make AutoPairs understand python F-strings & byte strings
 create_autocmd("FileType", {
-    pattern = "python",
-    command = [[ let b:AutoPairs = AutoPairsDefine({ "f'": "'", "b'": "'", "r'": "'"}) ]]
+  pattern = "python",
+  command = [[ let b:AutoPairs = AutoPairsDefine({ "f'": "'", "b'": "'", "r'": "'"}) ]]
 })
 
 -- AutoPairs for rust
 create_autocmd("FileType", {
-    pattern = "rust",
-    command = [[ let b:AutoPairs = AutoPairsDefine({ 'r#"': '"#', "\w\zs<": ">", "|": "|"}) ]]
+  pattern = "rust",
+  command = [[ let b:AutoPairs = AutoPairsDefine({ 'r#"': '"#', "\w\zs<": ">", "|": "|"}) ]]
 })
 
 -- Make AutoPairs understand markup language angle brackets
 create_autocmd("FileType", {
-    pattern = { "html", "xml" },
-    command = [[  let b:AutoPairs = AutoPairsDefine({ '<': '>' }) ]]
+  pattern = { "html", "xml" },
+  command = [[  let b:AutoPairs = AutoPairsDefine({ '<': '>' }) ]]
 })
 
 -- Auto-complete HTML tags with omnicomplete
 create_autocmd("FileType", {
-    pattern = "html",
-    -- command = "inoremap </ </<C-x><C-o>",
-    callback = function() Inoremap("</", "</<C-x><C-o>") end,
+  pattern = "html",
+  -- command = "inoremap </ </<C-x><C-o>",
+  callback = function() Inoremap("</", "</<C-x><C-o>") end,
 })
 
 -------------------------------------------------------------------------------
@@ -55,23 +55,23 @@ create_autocmd("FileType", {
 -------------------------------------------------------------------------------
 
 create_autocmd("BufNewFile", {
-    pattern = "*.sh",
-    command = "0read ~/.local/share/nvim/skeletons/skeleton.sh",
+  pattern = "*.sh",
+  command = "0read ~/.local/share/nvim/skeletons/skeleton.sh",
 })
 
 create_autocmd("BufNewFile", {
-    pattern = "*.py",
-    command = "0read ~/.local/share/nvim/skeletons/skeleton.py",
+  pattern = "*.py",
+  command = "0read ~/.local/share/nvim/skeletons/skeleton.py",
 })
 
 create_autocmd("BufNewFile", {
-    pattern = "*.html",
-    command = "0read ~/.local/share/nvim/skeletons/skeleton.html",
+  pattern = "*.html",
+  command = "0read ~/.local/share/nvim/skeletons/skeleton.html",
 })
 
 create_autocmd("BufNewFile", {
-    pattern = "*.go",
-    command = "0read ~/.local/share/nvim/skeletons/skeleton.go",
+  pattern = "*.go",
+  command = "0read ~/.local/share/nvim/skeletons/skeleton.go",
 })
 
 -- AUTO-PAIRS "FLY-MODE"
@@ -88,31 +88,32 @@ create_autocmd("BufNewFile", {
 -- autocommands are executed. Therefore, this will not work in a config file.
 -- UPDATE: using lazy.nvim instead of packer.nvim as plugin manager
 create_autocmd("VimEnter", {
-    desc = "Register auto-pairs Fly Mode to activate",
-    pattern = "*",
-    callback = function()
-        local lazy = require("lazy")
-        if not vim.tbl_isempty(lazy) and vim.tbl_contains(vim.tbl_map(
-            function(plugin)
-                return plugin.name
-            end,
-            lazy.plugins()), "auto-pairs") then
-            vim.g.AutoPairsFlyMode = 1
-            vim.g.AutoPairsShortcutBackInsert = "<C-b>"
-        end
-    end,
-    group = create_augroup("ActivateAutoPairsFlyMode", { clear = true }),
+  desc = "Register auto-pairs Fly Mode to activate",
+  pattern = "*",
+  callback = function()
+    local lazy = require("lazy")
+    if not vim.tbl_isempty(lazy) and vim.tbl_contains(vim.tbl_map(
+          function(plugin)
+            return plugin.name
+          end,
+          lazy.plugins()), "auto-pairs") then
+      vim.g.AutoPairsFlyMode = 1
+      vim.g.AutoPairsShortcutBackInsert = "<C-b>"
+    end
+  end,
+  group = create_augroup("ActivateAutoPairsFlyMode", opts),
 })
 
 -- move cursor to the last position it was, when the file was last opened
 -- source: https://builtin.com/software-engineering-perspectives/neovim-configuration
 create_autocmd("BufReadPost", {
-    pattern = "*",
-    callback = function()
-        if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
-            vim.cmd([[ execute  "normal! g'\"" ]])
-        end
-    end,
+  pattern = "*",
+  callback = function()
+    if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") then
+      vim.cmd([[ execute  "normal! g'\"" ]])
+    end
+  end,
+})
 
 -- Announce when colorscheme is changed
 create_autocmd("ColorScheme", {

@@ -5,7 +5,7 @@ local dap = require("dap")
 -- Keymappings
 Nnoremap("<M-b>", dap.toggle_breakpoint) -- toggle BREAKPOINT
 
-Nnoremap("<M-c>", function() -- CONTINUE
+Nnoremap("<M-c>", function()             -- CONTINUE
   dap.continue()
   vim.notify("continuing to next breakpoint", vim.log.levels.INFO, {
     title = "nvim-dap-config"
@@ -126,7 +126,8 @@ table.insert(dap.configurations.python, {
   request = "launch",
   name = "launch with options",
   program = "${file}",
-  python = function() end,
+  python = function()
+  end,
   pythonPath = function()
     local path
     for _, server in pairs(vim.lsp.get_active_clients()) do
@@ -138,7 +139,6 @@ table.insert(dap.configurations.python, {
     path = vim.fn.input("Python path: ", path or "", "file")
     return path ~= "" and vim.fn.expand(path) or nil
   end,
-
   args = function()
     local args = {}
     local i = 1

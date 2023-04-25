@@ -2,7 +2,7 @@
 -- Configurations for all language servers
 -------------------------------------------------------------------------------
 -- This dir contains config files for all installed servers. Server configs are
--- grouped according to the language. This file sources all of them and creates
+-- grouped according to the language.  This file sources all of them and creates
 -- a table of server:configuration mappings.
 local server_configs = {}
 local cur_dir = vim.fn.stdpath("config") .. "/lua/plugins/lsp/server_config"

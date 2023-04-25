@@ -46,9 +46,9 @@ end
 
 local diagnostic_signs = {
   error   = { name = "DiagnosticSignError", text = "🕱 " },
-  hint    = { name = "DiagnosticSignHint",  text = "" }, -- 💡
-  info    = { name = "DiagnosticSignInfo",  text = "ⓘ " },
-  warning = { name = "DiagnosticSignWarn",  text = "⚠" },
+  hint    = { name = "DiagnosticSignHint", text = "" }, -- 💡
+  info    = { name = "DiagnosticSignInfo", text = "ⓘ " },
+  warning = { name = "DiagnosticSignWarn", text = "⚠" },
 }
 
 for _, opts in pairs(diagnostic_signs) do
