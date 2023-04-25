@@ -4,8 +4,8 @@
 
 
 -- Make keymappings for given LSP server for given buffer
-local function set_keymap(client, bufnr)
-
+local function set_keymappings(client, bufnr)
+  -- LSP keymappings
   local function map(keys, func, opts, mode)
     opts = opts or {}
     opts.silent = true
@@ -84,4 +84,4 @@ local function set_keymap(client, bufnr)
 end
 
 
-return set_keymap
+return set_keymappings

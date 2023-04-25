@@ -25,6 +25,7 @@ capabilities.offsetEncoding = { "utf-16" } -- clangd uses utf-8 by default
 local set_keymappings = require("plugins.lsp.keymap")
 
 local function on_attach(client, bufnr)
+  -- setup keymappings
   set_keymappings(client, bufnr)
 
   -- vim.api.nvim_buf_create_user_command(bufnr,
