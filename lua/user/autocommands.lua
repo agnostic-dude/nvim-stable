@@ -113,4 +113,14 @@ create_autocmd("BufReadPost", {
             vim.cmd([[ execute  "normal! g'\"" ]])
         end
     end,
+
+-- Announce when colorscheme is changed
+create_autocmd("ColorScheme", {
+  desc = "announce change of colorscheme",
+  callback = function()
+    local new_colorscheme = vim.fn.expand("<amatch>")
+    vim.notify("switched to " .. new_colorscheme,
+      INFO, { title = "Colorscheme" })
+  end,
+  group = create_augroup("ColorschemeChange", opts),
 })
