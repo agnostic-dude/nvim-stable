@@ -19,7 +19,7 @@ src/
 plugin/**
 
 kickstartnvim.lua
-lua/playground
+lua/testing
 jdhao
 magidc
 danielnehrig
