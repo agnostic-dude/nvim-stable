@@ -29,10 +29,14 @@ local modules = vim.tbl_map(
   config_files
 )
 
--- Source each of the modules and add their config tables to list of configs
+-- Source each of the modules and add their config tables to list of configs.
+-- Get relative path to parent directory from `lua` directory at runtime and
+-- prepend it to each module name.
+local _, i = parent_dir:find(vim.fn.stdpath("config") .. "/lua/")
+local path_from_lua = parent_dir:sub(i + 1):gsub("/", ".")
 for _, module in ipairs(modules) do
-  local module_path = string.format("plugins.lsp.server_config.%s", module)
-  server_configs = vim.tbl_extend("error", server_configs, require(module_path))
+  local import_path = string.format("%s.%s", path_from_lua, module)
+  server_configs = vim.tbl_extend("error", server_configs, require(import_path))
 end
 
 return server_configs
