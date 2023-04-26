@@ -7,7 +7,7 @@
 --=============================================================================
 
 local user_config = require("plugins.lsp.config")
-local server_configs = require("plugins.lsp.server_config")
+local server_configs = require("plugins.lsp.servers")
 
 local mason_installed, mason = pcall(require, "mason")
 local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
