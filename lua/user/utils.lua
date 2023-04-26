@@ -77,3 +77,23 @@ _G.ERROR = vim.log.levels.ERROR
 _G.WARN = vim.log.levels.WARN
 _G.INFO = vim.log.levels.INFO
 _G.DEBUG = vim.log.levels.DEBUG
+
+-- Means for any file to get its own name
+function _G.GetCurrentFileName()
+  local source = debug.getinfo(2, "S").source
+  if source:sub(1, 1) == "@" then
+    return source:sub(2)
+  else
+    return error("Caller was not defined in a file", 2)
+  end
+end
+
+-- Remove item from a list (vector table)
+-- NOTE: This function modifies the list in-place, does not return anything
+function _G.RemoveItem(tbl, item)
+  for i = 1, #tbl do
+    if tbl[i] == item then
+      table.remove(tbl, i)
+    end
+  end
+end
