@@ -9,22 +9,29 @@
 -- obtained at runtime!!!
 
 local server_configs = {}
-local parent_dir = vim.fn.stdpath("config") .. "/lua/plugins/lsp/server_config"
-local configs = vim.fn.globpath(parent_dir, "*.lua", false, true)
+local curr_file = GetCurrentFileName()
+local parent_dir = vim.fn.fnamemodify(curr_file, ":h")
+local config_files = vim.fn.globpath(parent_dir, "*.lua", false, true)
 
-if vim.tbl_isempty(configs) then
-  vim.notify("could not find server configuration files!", ERROR,
+-- Remove this init file from list of config files
+RemoveItem(config_files, curr_file)
+
+-- If we cannot find any server config files complain and exit
+if vim.tbl_isempty(config_files) then
+  vim.notify("could not find any server configuration files", ERROR,
     { title = "Server Configuration" })
   return 1
 end
 
+-- Get `module` part of the file name
 local modules = vim.tbl_map(
   function(o) return vim.fn.fnamemodify(o, ":t:r") end,
-  configs
+  config_files
 )
 
-for _, config in ipairs(vim.tbl_filter(function(s) return s ~= "init" end, modules)) do
-  local module_path = string.format("plugins.lsp.server_config.%s", config)
+-- Source each of the modules and add their config tables to list of configs
+for _, module in ipairs(modules) do
+  local module_path = string.format("plugins.lsp.server_config.%s", module)
   server_configs = vim.tbl_extend("error", server_configs, require(module_path))
 end
 
