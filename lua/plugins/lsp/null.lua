@@ -21,6 +21,8 @@ local null_sources = {
   formatting.prettierd.with({
     disabled_filetypes = { "html" } -- reserve HTML formatting for tidy
   }),
+  diagnostics.eslint_d,
+  diagnostics.jshint,
 
   -- HTML/XML
   formatting.tidy.with({ extra_args = { "-wrap", "80", "-indent", "auto" } }),
