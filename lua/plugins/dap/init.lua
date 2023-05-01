@@ -33,6 +33,24 @@ end)
 Nnoremap("<Leader>dL", function() require("osv").launch({ port = 8086 }) end)
 Nnoremap("<Leader>du", require("dap.ui.widgets").hover)
 
+-- Customize DAP symbols
+vim.fn.sign_define(
+  "DapBreakpoint",
+  { text = "🛑", texthl = "", linehl = "", numhl = "" }
+)
+vim.fn.sign_define(
+  "DapStopped",
+  { text = "🟢", texthl = "", linehl = "", numhl = "" }
+)
+vim.fn.sign_define(
+  "DapBreakpointCondition",
+  { text = "🟡", texthl = "", linehl = "", numhl = "" }
+)
+vim.fn.sign_define(
+  "DapLogPoint",
+  { text = "🔵", texthl = "", linehl = "", numhl = "" }
+)
+
 -- Setting up DAP-UI
 local dapui_ok, dapui = pcall(require, "dapui")
 if dapui_ok then
