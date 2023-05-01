@@ -23,6 +23,7 @@ local null_sources = {
   }),
   diagnostics.eslint_d,
   diagnostics.jshint,
+  diagnostics.jsonlint,
 
   -- HTML/XML
   formatting.tidy.with({ extra_args = { "-wrap", "80", "-indent", "auto" } }),
