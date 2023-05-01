@@ -48,7 +48,15 @@ return require("lazy").setup({
     },
 
     "tpope/vim-commentary", -- comment/uncomment with gcc/gc
-    "tpope/vim-surround",   -- delete/change/add quotes, parens, XML tags
+    -- delete/change/add quotes, parens, XML tags
+    {
+      "kylechui/nvim-surround",
+      version = "*",
+      event = "VeryLazy",
+      config = function()
+        require("nvim-surround").setup()
+      end
+    },
     "jiangmiao/auto-pairs",
 
     {
