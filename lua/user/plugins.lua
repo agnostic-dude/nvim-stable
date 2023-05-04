@@ -267,6 +267,21 @@ return require("lazy").setup({
 
     "junegunn/vim-emoji",   -- Emoji in vim
     "onsails/lspkind-nvim", -- VSCode-like pictograms
+
+    -- integrate live-server from neovim
+    {
+      "aurum77/live-server.nvim",
+      event = "VeryLazy",
+      build = function()
+        require("live_server.util").install()
+      end,
+      cmd = { "LiveServer", "LiverServerStart", "LiverServerStop" },
+      config = function(plugin)
+        require("plugins.live-server")
+        vim.notify("Loaded " .. plugin.name, INFO,
+          { title = "Plugin Configuration" })
+      end
+    },
   },
 
   -----------------------------
