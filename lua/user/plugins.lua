@@ -256,6 +256,7 @@ return require("lazy").setup({
     --===========================================================================
     {
       "nvim-tree/nvim-tree.lua",
+      build = ":TSUpdate",
       dependencies = "nvim-tree/nvim-web-devicons",
       config = function(plugin)
         require("plugins.nvim_tree")
