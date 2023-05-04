@@ -18,7 +18,7 @@ local null_sources = {
   diagnostics.pylint, -- +simple refactoring
 
   -- Javascript/Typescript
-  formatting.prettierd.with({
+  formatting.prettier.with({
     disabled_filetypes = { "html" } -- reserve HTML formatting for tidy
   }),
   diagnostics.eslint_d,
