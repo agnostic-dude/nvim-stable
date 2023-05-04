@@ -31,6 +31,7 @@ if lspconfig_ok then
       end
     })
   else
+    vim.notify("mason-lspconfig is not installed", WARN, { title = "Lspconfig" })
     for server, config in pairs(server_configs) do
       lspconfig[server].setup(vim.tbl_extend("error", config, user_config))
     end
@@ -45,3 +46,11 @@ require("plugins.lsp.cmp")
 
 -- Setup null-ls server
 require("plugins.lsp.null")
+
+-- Setup custom code folding
+local ufo_installed, ufo = pcall(require, "ufo")
+if ufo_installed then
+  ufo.setup()
+else
+  vim.notify("nvim-ufo not installed", WARN, { title = "Code Folding" })
+end

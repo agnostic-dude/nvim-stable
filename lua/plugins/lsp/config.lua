@@ -18,6 +18,10 @@ else
 end
 
 capabilities.offsetEncoding = { "utf-16" } -- clangd uses utf-8 by default
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 -------------------------------------------------------------------------------
 --                  LSP Server On Attach Callback
