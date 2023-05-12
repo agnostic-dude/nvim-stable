@@ -26,6 +26,7 @@ local null_sources = {
   diagnostics.jsonlint,
 
   -- HTML/XML
+  diagnostics.tidy,
   formatting.tidy.with({ extra_args = { "-wrap", "80", "-indent", "auto" } }),
 
   -- Rust
