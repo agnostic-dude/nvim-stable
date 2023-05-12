@@ -72,5 +72,5 @@ null_ls.setup({
   autostart = true,
   debug = true,
   sources = null_sources,
-  on_attach = lspconfig.on_attach
+  on_attach = lspconfig.on_attach,
 })
