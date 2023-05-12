@@ -171,7 +171,7 @@ return require("lazy").setup({
       "neovim/nvim-lspconfig", -- configs for builtin LSP client
       dependencies = {
         -- Automatically install LSPs to stdpath for neovim
-        { "williamboman/mason.nvim", build = "<cmd>MasonUpdate" },
+        { "williamboman/mason.nvim", build = ":MasonUpdate" },
         "williamboman/mason-lspconfig.nvim",
 
         -- Useful status updates for LSP
