@@ -33,13 +33,14 @@ local null_sources = {
   formatting.rustfmt,
 
   -- Go
-  formatting.gofmt, diagnostics.golangci_lint.with({
-  args = {
-    "run", "--fix=false", "--out-format=json", "$DIRNAME",
-    "--path-prefix", "$ROOT"
-  },
-  extra_args = { "-c", vim.fn.getenv("GOPATH") .. "/utils/.golangci.yml" }
-}),
+  formatting.gofmt,
+  diagnostics.golangci_lint.with({
+    args = {
+      "run", "--fix=false", "--out-format=json", "$DIRNAME",
+      "--path-prefix", "$ROOT"
+    },
+    extra_args = { "-c", vim.fn.getenv("GOPATH") .. "/utils/.golangci.yml" }
+  }),
 
   -- Lua
   -- lua-format is shite, stylua needs project based config files!
