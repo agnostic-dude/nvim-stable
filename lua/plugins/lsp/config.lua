@@ -27,14 +27,13 @@ capabilities.textDocument.foldingRange = {
 --                  LSP Server On Attach Callback
 -------------------------------------------------------------------------------
 local set_keymappings = require("plugins.lsp.keymap")
+local format_on_save = create_augroup("FormatOnSave", { clear = true })
 
 local function on_attach(client, bufnr)
   -- setup keymappings
   set_keymappings(client, bufnr)
 
   if client.server_capabilities.documentFormattingProvider then
-    local format_on_save = vim.api.nvim_create_augroup("FormatOnSave",
-      { clear = true })
     create_autocmd("BufWritePre", {
       group = format_on_save,
       buffer = bufnr,
