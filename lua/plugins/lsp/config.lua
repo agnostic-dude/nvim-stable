@@ -58,7 +58,7 @@ local function on_attach(client, bufnr)
     })
   else
     vim.notify(client.name .. " cannot format documents", WARN,
-      { title = "Lspconfig" })
+      { title = "LSP Config" })
   end
 end
 
