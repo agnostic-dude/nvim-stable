@@ -31,13 +31,13 @@ if lspconfig_ok then
       end
     })
   else
-    vim.notify("mason-lspconfig is not installed", WARN, { title = "Lspconfig" })
+    vim.notify("mason-lspconfig is not installed", WARN, { title = "LSP Config" })
     for server, config in pairs(server_configs) do
       lspconfig[server].setup(vim.tbl_extend("error", config, user_config))
     end
   end
 else
-  vim.notify("lspconfig not installed", ERROR, { title = "Lspconfig" })
+  vim.notify("lspconfig not installed", ERROR, { title = "LSP Config" })
   return 1
 end
 
